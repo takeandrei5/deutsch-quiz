@@ -15,10 +15,12 @@ datasource db {
 }
 
 model DifficultyLevel {
-  id      String  @id @default(auto()) @map("_id") @db.ObjectId
-  level   String  @unique
-  topics  Topic[]
-  enabled Boolean @default(true)
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  level           String  @unique
+  description     String?
+  difficultyLevel Int     @default(1)
+  topics          Topic[]
+  enabled         Boolean @default(true)
 }
 
 model Topic {
