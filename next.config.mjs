@@ -21,5 +21,6 @@ const config = {
   images: {
     domains: ["imagedelivery.net"],
   },
+  pageExtensions: ["tsx", "page.ts"],
 };
 export default config;
