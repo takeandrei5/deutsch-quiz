@@ -18,8 +18,6 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({
     { label: difficultyLevel, href: `/levels/${difficultyLevel}` },
   ];
 
-  console.log(topics);
-
   const renderTopics = (topics: Topic[]): JSX.Element[] => {
     return topics.map((topic) => {
       return (
@@ -28,6 +26,7 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({
           cardTitle={topic.name}
           cardDescription={topic.description || ""}
           cardImage={topic.image || ""}
+          cardBlurImage={topic.blurImage || ""}
           buttonLabel="Start"
           onButtonClick={() =>
             void router.push(`/levels/${difficultyLevel}/topics/${topic.name}`)

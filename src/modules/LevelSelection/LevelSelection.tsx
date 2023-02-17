@@ -23,7 +23,7 @@ const LevelSelection: React.FC = () => {
       >
         <Card
           cardTitle="A1"
-          cardDescription="Beginner A1"
+          cardDescription="Mit A1 lernen Sie die Grundbausteine ​​der deutschen Sprache, sowohl was Grammatik als auch Wortschatz betrifft."
           buttonLabel="Start"
           onButtonClick={() => void router.push("/levels/A1/topics")}
         />

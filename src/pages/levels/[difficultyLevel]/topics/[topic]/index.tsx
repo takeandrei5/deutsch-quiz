@@ -2,6 +2,7 @@ import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import { useRouter } from "next/router";
 import superjson from "superjson";
 
+import { Spinner } from "../../../../../components";
 import { Quiz } from "../../../../../modules";
 import { createContext } from "../../../../../server/trpc/context";
 import { appRouter } from "../../../../../server/trpc/router/_app";
@@ -26,21 +27,13 @@ const QuizPage: NextPage = () => {
   const topic = router.query.topic as string;
 
   const { data, isLoading, error } =
-    trpc.topics.getMultipleQuizQuestions.useQuery(
-      { topic },
-      {
-        onSuccess: (data) => {
-          console.log(data);
-          return data;
-        },
-      }
-    );
+    trpc.topics.getMultipleQuizQuestions.useQuery({ topic });
 
-  if (isLoading || !data?.length) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return <Spinner />;
   }
 
-  if (error || isLoading) {
+  if (error) {
     return <div>{error?.message}</div>;
   }
 

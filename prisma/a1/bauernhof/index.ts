@@ -1,1 +1,1 @@
-export { default as a1_bauernhof_topic } from "./topic";
+export { default as build_a1_bauernhof_topic } from "./topic";

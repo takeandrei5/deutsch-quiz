@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import type { DifficultyLevel } from "@prisma/client";
 
-import { a1_bauernhof_topic } from "./a1/bauernhof";
+import { build_a1_bauernhof_topic } from "./a1/bauernhof";
+
+import type { DifficultyLevel } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -19,7 +20,7 @@ async function insertDifficultyLevels(): Promise<void> {
       level: "A1",
       enabled: true,
       topics: {
-        create: [a1_bauernhof_topic],
+        create: [await build_a1_bauernhof_topic()],
       },
     },
   });

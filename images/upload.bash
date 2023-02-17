@@ -19,6 +19,6 @@ do
     --form "id=${id}"
   ((index++))
 
-  echo -e "Progress $((100 * $index / $totalCount))% (finished ${id})"
+  echo -e "Progress $((100 * $index / $totalCount))%"
 done
 

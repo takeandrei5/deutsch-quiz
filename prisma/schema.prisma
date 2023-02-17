@@ -15,10 +15,12 @@ datasource db {
 }
 
 model DifficultyLevel {
-  id      String  @id @default(auto()) @map("_id") @db.ObjectId
-  level   String  @unique
-  topics  Topic[]
-  enabled Boolean @default(true)
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  level           String  @unique
+  description     String?
+  difficultyLevel Int     @default(1)
+  topics          Topic[]
+  enabled         Boolean @default(true)
 }
 
 model Topic {
@@ -26,6 +28,7 @@ model Topic {
   name                  String                 @unique
   description           String?
   image                 String?
+  blurImage             String?
   multipleQuizQuestions MultipleQuizQuestion[]
   difficultyLevel       DifficultyLevel        @relation(fields: [difficultyLevelId], references: [id])
   difficultyLevelId     String                 @db.ObjectId
@@ -36,6 +39,7 @@ model MultipleQuizQuestion {
   question      String?
   correctAnswer String
   image         String?
+  blurImage     String?
   hint          String?
   answers       String[]
   topic         Topic    @relation(fields: [topicId], references: [id])
