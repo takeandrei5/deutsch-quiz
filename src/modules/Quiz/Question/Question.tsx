@@ -2,7 +2,11 @@ import Image from "next/image";
 
 import type { QuestionProps } from "./types";
 
-const Question: React.FC<QuestionProps> = ({ image = "", question = "" }) => {
+const Question: React.FC<QuestionProps> = ({
+  image = "",
+  blurImage = "",
+  question = "",
+}: QuestionProps) => {
   return (
     <>
       {image && (
@@ -11,7 +15,9 @@ const Question: React.FC<QuestionProps> = ({ image = "", question = "" }) => {
           alt={question}
           width={100}
           height={100}
-          quality={100}
+          quality={75}
+          placeholder="blur"
+          blurDataURL={blurImage}
         />
       )}
       <span className="text-neutral">{question}</span>

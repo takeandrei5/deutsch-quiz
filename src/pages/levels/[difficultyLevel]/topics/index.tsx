@@ -13,6 +13,7 @@ import type {
   GetServerSidePropsResult,
   NextPage,
 } from "next";
+import { Spinner } from "../../../../components";
 
 const TopicsPage: NextPage<TopicsPageProps> = ({
   difficultyLevel,
@@ -23,11 +24,11 @@ const TopicsPage: NextPage<TopicsPageProps> = ({
     });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
-  if (error || isLoading) {
-    return <div>{error?.message}</div>;
+  if (error) {
+    return <div>{error.message}</div>;
   }
 
   return <TopicSelection difficultyLevel={difficultyLevel} topics={data} />;

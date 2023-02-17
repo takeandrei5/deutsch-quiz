@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 
 import { ChatEnd } from "./ChatEnd";
 import { ChatStart } from "./ChatStart";
@@ -34,6 +34,7 @@ const useQuiz = (questions: NonEmptyArray<MultipleQuizQuestion>) => {
     React.createElement<ChatStartProps>(ChatStart, {
       node: React.createElement<QuestionProps>(Question, {
         image: questions[0].image || "",
+        blurImage: questions[0].blurImage || "",
         question: questions[0].question || "",
       }),
     }),
@@ -45,8 +46,8 @@ const useQuiz = (questions: NonEmptyArray<MultipleQuizQuestion>) => {
     }),
   ]);
 
-  useEffect(() => {
-    scrollToBottom();
+  useLayoutEffect(() => {
+    setTimeout(() => scrollToBottom(), 100);
   }, [history]);
 
   const scrollToBottom = (): void => {
@@ -124,6 +125,7 @@ const useQuiz = (questions: NonEmptyArray<MultipleQuizQuestion>) => {
         React.createElement<ChatStartProps>(ChatStart, {
           node: React.createElement<QuestionProps>(Question, {
             image: newQuestion.image || "",
+            blurImage: newQuestion.blurImage || "",
             question: newQuestion.question || "",
           }),
         }),
@@ -140,6 +142,7 @@ const useQuiz = (questions: NonEmptyArray<MultipleQuizQuestion>) => {
 
     incorrectAnswersCountRef.current += 1;
 
+    currentOptionsRef.current = buildOptions(currentQuestion);
     setHistory((prevHistory) => [
       ...prevHistory,
       React.createElement<ChatStartProps>(ChatStart, {

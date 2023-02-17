@@ -28,6 +28,7 @@ model Topic {
   name                  String                 @unique
   description           String?
   image                 String?
+  blurImage             String?
   multipleQuizQuestions MultipleQuizQuestion[]
   difficultyLevel       DifficultyLevel        @relation(fields: [difficultyLevelId], references: [id])
   difficultyLevelId     String                 @db.ObjectId
@@ -38,6 +39,7 @@ model MultipleQuizQuestion {
   question      String?
   correctAnswer String
   image         String?
+  blurImage     String?
   hint          String?
   answers       String[]
   topic         Topic    @relation(fields: [topicId], references: [id])
