@@ -1,4 +1,5 @@
-import { Footer } from "../../components";
+import { Footer } from "@components";
+
 import type { DefaultLayoutProps } from "./types";
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({

@@ -14,7 +14,23 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components": ["src/components/index.tsx"],
+      "@components/*": ["src/components/*"],
+      "@env/*": ["src/env/*"],
+      "@layouts": ["src/layouts/index.tsx"],
+      "@models": ["src/models/index.ts"],
+      "@modules": ["src/modules/index.tsx"],
+      "@modules/*": ["src/modules/*"],
+      "@pages/*": ["src/pages/*"],
+      "@routes/*": ["src/routes/*"],
+      // "@server": ["src/server"],
+      "@server/*": ["src/server/*"],
+      "@types": ["src/types/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
   "exclude": ["node_modules", "images"]

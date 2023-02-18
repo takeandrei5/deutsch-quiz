@@ -2,23 +2,21 @@ import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import { useRouter } from "next/router";
 import superjson from "superjson";
 
-import { Spinner } from "../../../../../components";
-import { Quiz } from "../../../../../modules";
-import { createContext } from "../../../../../server/trpc/context";
-import { appRouter } from "../../../../../server/trpc/router/_app";
-import { trpc } from "../../../../../utils/trpc";
+import { Spinner } from "@components";
+import { Quiz } from "@modules";
+import { createContext } from "@server/trpc/context";
+import { appRouter } from "@server/trpc/router/_app";
+import { trpc } from "@utils/trpc";
 
-import type { TopicPageProps } from "./types";
-
-import type { NonEmptyArray } from "../../../../../utils/models";
-
-import type { NextRouter } from "next/router";
+import type { MultipleQuizQuestion } from "@prisma/client";
+import type { NonEmptyArray } from "@utils/models";
 import type {
   GetServerSidePropsContext,
   GetServerSidePropsResult,
   NextPage,
 } from "next";
-import type { MultipleQuizQuestion } from "@prisma/client";
+import type { NextRouter } from "next/router";
+import type { TopicPageProps } from "./types";
 
 const QuizPage: NextPage = () => {
   const router: NextRouter = useRouter();

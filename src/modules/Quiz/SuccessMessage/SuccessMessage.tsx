@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { useEffect } from "react";
 import useSound from "use-sound";
 
 import type { MessageState } from "../types";
 
 const SuccessMessage: React.FC = () => {
   const [play] = useSound("/ding.mp3", { volume: 0.25 });
-  play();
+  useEffect(() => play(), [play]);
 
   const renderMessage = (): JSX.Element => {
     const random: number = Math.floor(Math.random() * 5) + 1;

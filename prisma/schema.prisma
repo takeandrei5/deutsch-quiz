@@ -14,13 +14,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model DifficultyLevel {
-  id              String  @id @default(auto()) @map("_id") @db.ObjectId
-  level           String  @unique
-  description     String?
-  difficultyLevel Int     @default(1)
-  topics          Topic[]
-  enabled         Boolean @default(true)
+model Difficulty {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  level       String  @unique
+  description String
+  rating      Int     @default(1)
+  topics      Topic[]
+  enabled     Boolean @default(true)
 }
 
 model Topic {
@@ -30,8 +30,8 @@ model Topic {
   image                 String?
   blurImage             String?
   multipleQuizQuestions MultipleQuizQuestion[]
-  difficultyLevel       DifficultyLevel        @relation(fields: [difficultyLevelId], references: [id])
-  difficultyLevelId     String                 @db.ObjectId
+  difficulty            Difficulty             @relation(fields: [difficultyId], references: [id])
+  difficultyId          String                 @db.ObjectId
 }
 
 model MultipleQuizQuestion {

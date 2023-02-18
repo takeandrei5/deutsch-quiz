@@ -1,27 +1,25 @@
 import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import superjson from "superjson";
 
-import { TopicSelection } from "../../../../modules";
-import { createContext } from "../../../../server/trpc/context";
-import { appRouter } from "../../../../server/trpc/router/_app";
-import { trpc } from "../../../../utils/trpc";
-
-import type { TopicsPageProps } from "./types";
+import { Spinner } from "@components";
+import { TopicSelection } from "@modules";
+import { createContext } from "@server/trpc/context";
+import { appRouter } from "@server/trpc/router/_app";
+import { trpc } from "@utils/trpc";
 
 import type {
   GetServerSidePropsContext,
   GetServerSidePropsResult,
   NextPage,
 } from "next";
-import { Spinner } from "../../../../components";
+import type { TopicsPageProps } from "./types";
 
 const TopicsPage: NextPage<TopicsPageProps> = ({
   difficultyLevel,
 }: TopicsPageProps) => {
-  const { data, isLoading, error } =
-    trpc.difficultyLevels.getManyTopics.useQuery({
-      difficultyLevel: "A1",
-    });
+  const { data, isLoading, error } = trpc.difficulties.getManyTopics.useQuery({
+    difficultyLevel,
+  });
 
   if (isLoading) {
     return <Spinner />;
@@ -44,8 +42,8 @@ export const getServerSideProps = async (
   });
   const difficultyLevel = context.query.difficultyLevel as string;
 
-  await ssg.difficultyLevels.getManyTopics.prefetch({
-    difficultyLevel: "A1",
+  await ssg.difficulties.getManyTopics.prefetch({
+    difficultyLevel,
   });
 
   return {

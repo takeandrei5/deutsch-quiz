@@ -1,16 +1,35 @@
-import type { NextRouter } from "next/router";
+import { Breadcrumb, Card } from "@components";
+import cx from "classnames";
 import { useRouter } from "next/router";
 
-import { Breadcrumb, Card } from "../../components";
-import type { BreadcrumbItem } from "../../components/Breadcrumb/types";
-import cx from "classnames";
+import type { BreadcrumbItem } from "@components/Breadcrumb/types";
+import type { Difficulty } from "@prisma/client";
+import type { NextRouter } from "next/router";
+import type { LevelSelectionProps } from "./types";
 
-const LevelSelection: React.FC = () => {
+const LevelSelection: React.FC<LevelSelectionProps> = ({
+  difficulties,
+}: LevelSelectionProps) => {
   const breadcrumbItems: BreadcrumbItem[] = [
     { label: "Niveau wählen", href: "/levels" },
   ];
 
   const router: NextRouter = useRouter();
+
+  const renderDifficultyCards = (difficulties: Difficulty[]) => {
+    return difficulties.map((difficulty: Difficulty) => (
+      <Card
+        key={difficulty.level}
+        cardTitle={difficulty.level}
+        difficultyRating={difficulty.rating}
+        cardDescription={difficulty.description}
+        buttonLabel="Start"
+        onButtonClick={() =>
+          void router.push(`/levels/${difficulty.level}/topics`)
+        }
+      />
+    ));
+  };
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -21,31 +40,7 @@ const LevelSelection: React.FC = () => {
           "md:grid-cols-2": false,
         })}
       >
-        <Card
-          cardTitle="A1"
-          cardDescription="Mit A1 lernen Sie die Grundbausteine ​​der deutschen Sprache, sowohl was Grammatik als auch Wortschatz betrifft."
-          buttonLabel="Start"
-          onButtonClick={() => void router.push("/levels/A1/topics")}
-        />
-
-        {/* <Card
-          cardTitle="B1"
-          cardDescription="Beginner B1"
-          buttonLabel="Start"
-          onButtonClick={() => void router.push("/levels/B1/topics")}
-        />
-        <Card
-          cardTitle="A2"
-          cardDescription="Beginner A2"
-          buttonLabel="Start"
-          onButtonClick={() => void router.push("/levels/A2/topics")}
-        />
-        <Card
-          cardTitle="B2"
-          cardDescription="Beginner B2"
-          buttonLabel="Start"
-          onButtonClick={() => void router.push("/levels/B2/topics")}
-        /> */}
+        {renderDifficultyCards(difficulties)}
       </div>
     </div>
   );

@@ -1,12 +1,11 @@
 import "../styles/globals.css";
 
+import { DefaultLayout } from "@layouts";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { trpc } from "@utils/trpc";
 import Head from "next/head";
 
-import { DefaultLayout } from "../layouts";
-import { trpc } from "../utils/trpc";
-
 import type { AppType } from "next/app";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (

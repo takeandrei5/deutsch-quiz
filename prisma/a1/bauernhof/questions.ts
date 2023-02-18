@@ -1,5 +1,6 @@
+import { buildBlurImage } from "@utils/image-utils";
+
 import type { Prisma } from "@prisma/client";
-import { buildBlurImage } from "../../../src/utils/image-utils";
 
 const buildQuestions = async (): Promise<
   Prisma.MultipleQuizQuestionCreateManyTopicInput[]
