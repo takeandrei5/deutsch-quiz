@@ -1,15 +1,9 @@
 const Footer: React.FC = () => {
   return (
-    <footer>
-      {/* <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="footer p-3 mt-4 text-center bg-dark text-light">
-            © 2023 3T Software Labs Ltd. All rights reserved.
-            </div>
-          </div>
-        </div>
-      </div> */}
+    <footer className="footer footer-center mt-auto pt-4 text-base-content">
+      <span>
+        {`© ${new Date().getFullYear()} Quintix Technologies Ltd. All rights reserved.`}
+      </span>
     </footer>
   );
 };

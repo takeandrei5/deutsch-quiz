@@ -23,6 +23,7 @@ const Card: React.FC<CardProps> = ({
             return (
               <input
                 key={index}
+                aria-label="difficulty-rating"
                 type="radio"
                 name="rating-2"
                 className="mask mask-star-2 pointer-events-none bg-orange-400"
@@ -37,7 +38,7 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className="card card-compact w-80 bg-base-100 shadow-xl md:w-96">
+    <div className="card-compact card w-80 bg-base-100 shadow-xl md:w-96">
       {cardImage && (
         <figure className="relative h-48 w-96">
           <Image

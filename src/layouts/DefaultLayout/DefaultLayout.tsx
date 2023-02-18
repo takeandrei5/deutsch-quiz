@@ -8,10 +8,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   return (
     <>
       {/* <Header /> */}
-      <main className="h-full overflow-auto bg-gradient-to-br from-pink-300 via-fuchsia-200 to-purple-300 p-8">
+      <main className="flex h-full flex-col items-center overflow-hidden bg-gradient-to-br from-pink-300 via-fuchsia-200 to-purple-300 p-4">
         {children}
+        <Footer />
       </main>
-      <Footer />
     </>
   );
 };
