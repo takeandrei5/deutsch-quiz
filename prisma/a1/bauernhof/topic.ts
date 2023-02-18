@@ -1,4 +1,4 @@
-import { buildBlurImage } from "../../../src/utils/image-utils";
+import { buildBlurImage } from "@utils/image-utils";
 import buildQuestions from "./questions";
 
 import type { Prisma } from "@prisma/client";

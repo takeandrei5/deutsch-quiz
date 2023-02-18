@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-
 import { build_a1_bauernhof_topic } from "./a1/bauernhof";
 
 import type { Difficulty } from "@prisma/client";
