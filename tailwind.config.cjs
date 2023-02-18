@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  purge: ["./src/**/*.tsx"],
   theme: {
     extend: {
       keyframes: {

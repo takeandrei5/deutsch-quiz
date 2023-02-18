@@ -16,7 +16,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />
-      <ReactQueryDevtools position={"bottom-right"} />
+      {process.env.NODE_ENV !== "production" && (
+        <ReactQueryDevtools position={"bottom-right"} />
+      )}
     </DefaultLayout>
   );
 };
