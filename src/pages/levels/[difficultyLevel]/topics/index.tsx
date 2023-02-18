@@ -8,8 +8,9 @@ import { appRouter } from "@server/trpc/router/_app";
 import { trpc } from "@utils/trpc";
 
 import type {
-  GetServerSidePropsContext,
-  GetServerSidePropsResult,
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
   NextPage,
 } from "next";
 import type { TopicsPageProps } from "./types";
@@ -32,15 +33,15 @@ const TopicsPage: NextPage<TopicsPageProps> = ({
   return <TopicSelection difficultyLevel={difficultyLevel} topics={data} />;
 };
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext<{ difficultyLevel: string }>
-): Promise<GetServerSidePropsResult<TopicsPageProps>> => {
+export const getStaticProps = async (
+  context: GetStaticPropsContext<{ difficultyLevel: string }>
+): Promise<GetStaticPropsResult<TopicsPageProps>> => {
   const ssg = createProxySSGHelpers({
     router: appRouter,
     ctx: await createContext(),
     transformer: superjson,
   });
-  const difficultyLevel = context.query.difficultyLevel as string;
+  const difficultyLevel = context.params?.difficultyLevel as string;
 
   await ssg.difficulties.getManyTopics.prefetch({
     difficultyLevel,
@@ -53,5 +54,12 @@ export const getServerSideProps = async (
     },
   };
 };
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  return {
+    paths: [{ params: { difficultyLevel: "A1" } }],
+    fallback: false,
+  };
+}
 
 export default TopicsPage;

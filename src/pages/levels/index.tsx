@@ -6,7 +6,7 @@ import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import { trpc } from "@utils/trpc";
 import superjson from "superjson";
 
-import type { GetServerSidePropsResult, NextPage } from "next";
+import type { GetStaticPropsResult, NextPage } from "next";
 import type { LevelsPageProps } from "./types";
 
 const LevelsPage: NextPage<LevelsPageProps> = () => {
@@ -24,8 +24,8 @@ const LevelsPage: NextPage<LevelsPageProps> = () => {
   return <LevelSelection difficulties={data} />;
 };
 
-export const getServerSideProps = async (): Promise<
-  GetServerSidePropsResult<LevelsPageProps>
+export const getStaticProps = async (): Promise<
+  GetStaticPropsResult<LevelsPageProps>
 > => {
   const ssg = createProxySSGHelpers({
     router: appRouter,

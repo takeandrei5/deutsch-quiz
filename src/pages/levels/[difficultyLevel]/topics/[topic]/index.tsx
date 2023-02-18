@@ -11,8 +11,9 @@ import { trpc } from "@utils/trpc";
 import type { MultipleQuizQuestion } from "@prisma/client";
 import type { NonEmptyArray } from "@utils/models";
 import type {
-  GetServerSidePropsContext,
-  GetServerSidePropsResult,
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
   NextPage,
 } from "next";
 import type { NextRouter } from "next/router";
@@ -44,15 +45,15 @@ const QuizPage: NextPage = () => {
   );
 };
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext<{ difficultyLevel: string }>
-): Promise<GetServerSidePropsResult<TopicPageProps>> => {
+export const getStaticProps = async (
+  context: GetStaticPropsContext<{ topic: string }>
+): Promise<GetStaticPropsResult<TopicPageProps>> => {
   const ssg = createProxySSGHelpers({
     router: appRouter,
     ctx: await createContext(),
     transformer: superjson,
   });
-  const topic = context.query.topic as string;
+  const topic = context.params?.topic as string;
 
   await ssg.topics.getMultipleQuizQuestions.prefetch({
     topic,
@@ -65,5 +66,19 @@ export const getServerSideProps = async (
     },
   };
 };
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  return {
+    paths: [
+      {
+        params: {
+          difficultyLevel: "A1",
+          topic: "Auf dem Bauernhof",
+        },
+      },
+    ],
+    fallback: false,
+  };
+}
 
 export default QuizPage;
