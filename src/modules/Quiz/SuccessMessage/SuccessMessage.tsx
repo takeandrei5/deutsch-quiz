@@ -13,7 +13,13 @@ const SuccessMessage: React.FC = () => {
 
     const defaultMessage: JSX.Element = (
       <>
-        <Image src="/anya.gif" alt="Success" height={100} width={100} />
+        <Image
+          src="/anya.gif"
+          alt="Success"
+          height={100}
+          width={100}
+          loading="lazy"
+        />
         <span>Umwerfend! &#129327;</span>
       </>
     );
@@ -27,6 +33,7 @@ const SuccessMessage: React.FC = () => {
             alt="Success"
             height={100}
             width={100}
+            loading="lazy"
           />
           <span>Spitze! &#128079;</span>
         </>
@@ -35,7 +42,13 @@ const SuccessMessage: React.FC = () => {
       4: <span>Genau! &#128588;</span>,
       5: (
         <>
-          <Image src="/happy.gif" alt="Success" height={100} width={100} />
+          <Image
+            src="/happy.gif"
+            alt="Success"
+            height={100}
+            width={100}
+            loading="lazy"
+          />
           <span>Wunderbar! &#127881;</span>
         </>
       ),
