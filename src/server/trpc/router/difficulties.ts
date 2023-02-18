@@ -1,9 +1,20 @@
 import { z } from "zod";
 
 import { publicProcedure, router } from "../trpc";
-import type { Topic } from "@prisma/client";
+import type { Difficulty, Topic } from "@prisma/client";
 
-export const difficultyLevelsRouter = router({
+export const difficultiesRouter = router({
+  getManyDifficulties: publicProcedure.query(
+    async ({ ctx }): Promise<Difficulty[]> => {
+      const difficulties: Difficulty[] = await ctx.prisma.difficulty.findMany({
+        where: {
+          enabled: true,
+        },
+      });
+
+      return difficulties;
+    }
+  ),
   getManyTopics: publicProcedure
     .input(
       z.object({
@@ -14,7 +25,7 @@ export const difficultyLevelsRouter = router({
     )
     .query(async ({ ctx, input }): Promise<Topic[]> => {
       const topics: Topic[] = (
-        await ctx.prisma.difficultyLevel.findMany({
+        await ctx.prisma.difficulty.findMany({
           where: {
             level: input.difficultyLevel,
             enabled: true,

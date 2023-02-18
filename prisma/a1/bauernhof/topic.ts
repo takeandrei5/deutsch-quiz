@@ -1,9 +1,10 @@
-import type { Prisma } from "@prisma/client";
-import buildQuestions from "./questions";
 import { buildBlurImage } from "../../../src/utils/image-utils";
+import buildQuestions from "./questions";
+
+import type { Prisma } from "@prisma/client";
 
 const buildTopic =
-  async (): Promise<Prisma.TopicCreateWithoutDifficultyLevelInput> => ({
+  async (): Promise<Prisma.TopicCreateWithoutDifficultyInput> => ({
     name: "Auf dem Bauernhof",
     description: "Lernen Sie über die Bauernhoftiere",
     image:

@@ -1,9 +1,9 @@
 import { router } from "../trpc";
-import { difficultyLevelsRouter } from "./difficulty-levels";
+import { difficultiesRouter } from "./difficulties";
 import { topicsRouter } from "./topics";
 
 export const appRouter = router({
-  difficultyLevels: difficultyLevelsRouter,
+  difficulties: difficultiesRouter,
   topics: topicsRouter,
 });
 

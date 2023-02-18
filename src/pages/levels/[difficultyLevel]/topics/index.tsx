@@ -18,10 +18,9 @@ import { Spinner } from "../../../../components";
 const TopicsPage: NextPage<TopicsPageProps> = ({
   difficultyLevel,
 }: TopicsPageProps) => {
-  const { data, isLoading, error } =
-    trpc.difficultyLevels.getManyTopics.useQuery({
-      difficultyLevel: "A1",
-    });
+  const { data, isLoading, error } = trpc.difficulties.getManyTopics.useQuery({
+    difficultyLevel,
+  });
 
   if (isLoading) {
     return <Spinner />;
@@ -44,8 +43,8 @@ export const getServerSideProps = async (
   });
   const difficultyLevel = context.query.difficultyLevel as string;
 
-  await ssg.difficultyLevels.getManyTopics.prefetch({
-    difficultyLevel: "A1",
+  await ssg.difficulties.getManyTopics.prefetch({
+    difficultyLevel,
   });
 
   return {
