@@ -39,15 +39,18 @@ const Card: React.FC<CardProps> = ({
   return (
     <div className="card-compact card w-80 bg-base-100 shadow-xl md:w-96">
       {cardImage && (
-        <figure>
+        <figure className="relative h-56 w-96">
           <Image
             src={cardImage}
             alt={cardDescription || cardTitle}
-            width="384"
-            height="216"
+            fill
             quality={75}
             placeholder="blur"
             blurDataURL={cardBlurImage}
+            priority
+            style={{
+              objectFit: "contain",
+            }}
           />
         </figure>
       )}

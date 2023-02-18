@@ -10,15 +10,19 @@ const Question: React.FC<QuestionProps> = ({
   return (
     <>
       {image && (
-        <Image
-          src={image}
-          alt={question}
-          width={100}
-          height={100}
-          quality={75}
-          placeholder="blur"
-          blurDataURL={blurImage}
-        />
+        <figure className="relative h-24 w-24">
+          <Image
+            src={image}
+            alt={question}
+            fill
+            quality={75}
+            placeholder="blur"
+            blurDataURL={blurImage}
+            style={{
+              objectFit: "cover",
+            }}
+          />
+        </figure>
       )}
       <span className="text-neutral">{question}</span>
     </>

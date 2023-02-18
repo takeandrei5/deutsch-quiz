@@ -13,13 +13,17 @@ const SuccessMessage: React.FC = () => {
 
     const defaultMessage: JSX.Element = (
       <>
-        <Image
-          src="/anya.gif"
-          alt="Success"
-          height={100}
-          width={100}
-          loading="lazy"
-        />
+        <figure className="relative h-24 w-24">
+          <Image
+            src="/anya.gif"
+            alt="Success"
+            fill
+            quality={75}
+            style={{
+              objectFit: "contain",
+            }}
+          />
+        </figure>
         <span>Umwerfend! &#129327;</span>
       </>
     );
@@ -28,13 +32,17 @@ const SuccessMessage: React.FC = () => {
       1: defaultMessage,
       2: (
         <>
-          <Image
-            src="/excited-spin.gif"
-            alt="Success"
-            height={100}
-            width={100}
-            loading="lazy"
-          />
+          <figure className="relative h-24 w-24">
+            <Image
+              src="/excited-spin.gif"
+              alt="Success"
+              fill
+              quality={75}
+              style={{
+                objectFit: "contain",
+              }}
+            />
+          </figure>
           <span>Spitze! &#128079;</span>
         </>
       ),
@@ -42,13 +50,17 @@ const SuccessMessage: React.FC = () => {
       4: <span>Genau! &#128588;</span>,
       5: (
         <>
-          <Image
-            src="/happy.gif"
-            alt="Success"
-            height={100}
-            width={100}
-            loading="lazy"
-          />
+          <figure className="relative h-24 w-24">
+            <Image
+              src="/happy.gif"
+              alt="Success"
+              fill
+              quality={75}
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </figure>
           <span>Wunderbar! &#127881;</span>
         </>
       ),
