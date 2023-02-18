@@ -1,11 +1,10 @@
+import { Spinner } from "@components";
+import { LevelSelection } from "@modules";
+import { createContext } from "@server/trpc/context";
+import { appRouter } from "@server/trpc/router/_app";
 import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+import { trpc } from "@utils/trpc";
 import superjson from "superjson";
-
-import { Spinner } from "../../components";
-import { LevelSelection } from "../../modules";
-import { createContext } from "../../server/trpc/context";
-import { appRouter } from "../../server/trpc/router/_app";
-import { trpc } from "../../utils/trpc";
 
 import type { GetServerSidePropsResult, NextPage } from "next";
 import type { LevelsPageProps } from "./types";

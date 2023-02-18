@@ -1,12 +1,11 @@
+import { Breadcrumb, Card } from "@components";
 import cx from "classnames";
 import { useRouter } from "next/router";
 
-import { Breadcrumb, Card } from "../../components";
-
-import type { NextRouter } from "next/router";
-import type { BreadcrumbItem } from "../../components/Breadcrumb/types";
-import type { LevelSelectionProps } from "./types";
+import type { BreadcrumbItem } from "@components/Breadcrumb/types";
 import type { Difficulty } from "@prisma/client";
+import type { NextRouter } from "next/router";
+import type { LevelSelectionProps } from "./types";
 
 const LevelSelection: React.FC<LevelSelectionProps> = ({
   difficulties,

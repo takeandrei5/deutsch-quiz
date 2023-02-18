@@ -1,6 +1,5 @@
+import { shuffleArray } from "@utils/array-utils";
 import { z } from "zod";
-
-import { shuffleArray } from "../../../utils/array-utils";
 import { publicProcedure, router } from "../trpc";
 
 import type { MultipleQuizQuestion } from "@prisma/client";

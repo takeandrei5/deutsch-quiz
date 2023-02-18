@@ -8,7 +8,8 @@ const QuizResultsMessage: React.FC<QuizResultsMessageProps> = ({
   totalQuestionsCount,
 }: QuizResultsMessageProps) => {
   const [play] = useSound("/cheering.wav", { volume: 0.25 });
-  useEffect(() => play(), []);
+
+  useEffect(() => play(), [play]);
 
   return (
     <div className="mr-auto ml-auto flex w-fit flex-col items-center rounded-2xl bg-gradient-to-br from-pink-300 via-fuchsia-200 to-purple-300 p-4 text-neutral">

@@ -1,6 +1,6 @@
-import { DifficultyLevels } from "../../../../models/DifficultyLevels";
-
+import { DifficultyLevels } from "@models";
 import { NextResponse } from "next/server";
+
 import type { NextRequest } from "next/server";
 
 const middleware = (request: NextRequest): NextResponse => {
