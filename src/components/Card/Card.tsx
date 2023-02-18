@@ -40,7 +40,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <div className="card-compact card w-80 bg-base-100 shadow-xl md:w-96">
       {cardImage && (
-        <figure className="relative h-48 w-96">
+        <figure className="relative h-48 max-w-sm">
           <Image
             src={cardImage}
             alt={cardDescription || cardTitle}
