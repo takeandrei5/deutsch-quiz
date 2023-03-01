@@ -27,7 +27,7 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Apfel_LowQ/blur"
       ),
-      hint: "Ich bin Gelb, Grün oder Rot, und Ich mache Ärzten Angst.",
+      hint: "Ich bin Gelb, Grün oder Rot, und ich mache Ärzten Angst.",
       answers: [
         "Das ist der Apfel.",
         "Das ist die Banane.",
@@ -41,7 +41,7 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Banane_LowQ/blur"
       ),
-      hint: "Affen lieben mich.",
+      hint: "Die Affen lieben mich.",
       answers: [
         "Das ist die Banane.",
         "Das ist die Ananas.",
@@ -55,7 +55,7 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Bohne_LowQ/blur"
       ),
-      hint: "",
+      hint: "Ich lege sie in den Taco.",
       answers: [
         "Das ist die Bohne.",
         "Das ist die Erbse.",
@@ -69,7 +69,7 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Brokkoli_LowQ/blur"
       ),
-      hint: "",
+      hint: "Ich sehe wie ein Blumenkohl aus, aber ich bin nicht so groß.",
       answers: [
         "Das ist der Brokkoli.",
         "Das ist der Rettich.",
@@ -83,7 +83,7 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Brot_LowQ/blur"
       ),
-      hint: "Du kannst nicht ohne mich ein Sandwich machen.",
+      hint: "Du kannst nicht ohne mich einen Sandwich machen.",
       answers: [
         "Das ist das Brot.",
         "Das ist das Brötchen.",
@@ -105,13 +105,13 @@ const buildQuestions = async (): Promise<
       ],
     },
     {
-      correctAnswer: "Das ist die Chips.",
+      correctAnswer: "Das sind die Chips.",
       image:
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Chips/public",
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Chips_LowQ/blur"
       ),
-      hint: "",
+      hint: "Ich esse sie im Kino.",
       answers: [
         "Das ist die Chips.",
         "Das ist die Kartoffeln.",
@@ -125,7 +125,7 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Croissant_LowQ/blur"
       ),
-      hint: "Ich bin sehr lecker und ich bin aus Frankreich.",
+      hint: "Ich bin sehr lecker und ich komme aus Frankreich.",
       answers: [
         "Das ist das Croissant.",
         "Das ist das Brot.",
@@ -167,7 +167,7 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Karotte_LowQ/blur"
       ),
-      hint: "Die Kaninchen mögen mich sehr gerne.",
+      hint: "Die Kaninchen essen mich sehr gern.",
       answers: [
         "Das ist die Karotte.",
         "Das ist der Kürbis.",
@@ -181,7 +181,7 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Kartoffel_LowQ/blur"
       ),
-      hint: "Ich bin rund und braun, und sehr gut in der Supper.",
+      hint: "Ich bin rund, braun und sehr gut in der Suppe.",
       answers: [
         "Das ist die Kartoffel.",
         "Das ist die Gurke.",
@@ -209,11 +209,11 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Marmelade_LowQ/blur"
       ),
-      hint: "",
+      hint: "Ich bin vom Obst gemacht.",
       answers: [
         "Das ist die Marmelade.",
         "Das ist der Saft.",
-        "Das ist Nutella.",
+        "Das ist der Kuchen.",
       ],
     },
     {
@@ -265,7 +265,7 @@ const buildQuestions = async (): Promise<
       blurImage: await buildBlurImage(
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Lebensmittel_Zucker_LowQ/blur"
       ),
-      hint: "Ich bin nich sauer; ich bin süss.",
+      hint: "Ich bin nicht sauer; ich bin süß.",
       answers: [
         "Das ist der Zucker.",
         "Das ist das Salz.",
