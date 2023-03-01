@@ -79,7 +79,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
       {
         params: {
           difficultyLevel: "A1",
-          topic: "Lebensmittel",
+          topic: "In dem Supermarkt",
         },
       },
     ],
