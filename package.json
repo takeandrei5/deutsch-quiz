@@ -54,6 +54,6 @@
     "initVersion": "7.3.2"
   },
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+    "seed": "ts-node -r tsconfig-paths/register --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }

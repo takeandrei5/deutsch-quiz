@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { build_a1_bauernhof_topic } from "./a1/bauernhof";
 
 import type { Difficulty } from "@prisma/client";
+import { build_a1_lebensmittel_topic } from "./a1/lebensmittel";
 
 const prisma = new PrismaClient();
 
@@ -21,7 +22,10 @@ async function insertDifficulties(): Promise<void> {
         "Mit A1 lernen Sie die Grundbausteine ​​der deutschen Sprache, sowohl was Grammatik als auch Wortschatz betrifft.",
       rating: 1,
       topics: {
-        create: [await build_a1_bauernhof_topic()],
+        create: [
+          await build_a1_bauernhof_topic(),
+          await build_a1_lebensmittel_topic(),
+        ],
       },
       enabled: true,
     },

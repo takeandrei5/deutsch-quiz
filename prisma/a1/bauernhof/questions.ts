@@ -205,7 +205,7 @@ const buildQuestions = async (): Promise<
       image:
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Tiere_Truthahn/public",
       blurImage: await buildBlurImage(
-        "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Tiere_Truthan_LowQ/blur"
+        "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Tiere_Truthahn_LowQ/blur"
       ),
       hint: "Gulu gulu gulu.",
       answers: [

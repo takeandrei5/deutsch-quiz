@@ -26,7 +26,7 @@ const QuizPage: NextPage = () => {
   const topic = router.query.topic as string;
 
   const { data, isLoading, error } =
-    trpc.topics.getMultipleQuizQuestions.useQuery({ topic });
+    trpc.topics.getManyMultipleQuizQuestions.useQuery({ topic });
 
   if (isLoading) {
     return <Spinner />;
@@ -55,7 +55,7 @@ export const getStaticProps = async (
   });
   const topic = context.params?.topic as string;
 
-  await ssg.topics.getMultipleQuizQuestions.prefetch({
+  await ssg.topics.getManyMultipleQuizQuestions.prefetch({
     topic,
   });
 
@@ -74,6 +74,12 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
         params: {
           difficultyLevel: "A1",
           topic: "Auf dem Bauernhof",
+        },
+      },
+      {
+        params: {
+          difficultyLevel: "A1",
+          topic: "Lebensmittel",
         },
       },
     ],
