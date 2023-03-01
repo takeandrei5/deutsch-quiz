@@ -42,7 +42,7 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({
       <h1 className="text-4xl font-bold text-neutral">Wähle ein Thema</h1>
       <div
         className={cx("grid grid-cols-1 gap-4", {
-          "md:grid-cols-2": !!topics && topics.length > 2,
+          "md:grid-cols-2": !!topics && topics.length > 1,
         })}
       >
         {renderTopics(topics)}
