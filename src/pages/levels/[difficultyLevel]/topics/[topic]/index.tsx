@@ -76,6 +76,12 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
           topic: "Auf dem Bauernhof",
         },
       },
+      {
+        params: {
+          difficultyLevel: "A1",
+          topic: "Lebensmittel",
+        },
+      },
     ],
     fallback: false,
   };

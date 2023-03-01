@@ -18,8 +18,9 @@ const Question: React.FC<QuestionProps> = ({
             quality={75}
             placeholder="blur"
             blurDataURL={blurImage}
+            priority
             style={{
-              objectFit: "cover",
+              objectFit: "contain",
             }}
           />
         </figure>
