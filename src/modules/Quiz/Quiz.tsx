@@ -23,7 +23,7 @@ const Quiz: React.FC<QuizProps> = ({
     <div className="flex h-full flex-col items-center gap-4">
       <Breadcrumb breadcrumbItems={breadcrumbItems} />
       <div
-        className="h-full w-full overflow-auto rounded-2xl bg-base-100 p-4 shadow-xl lg:w-[768px] lg:p-8"
+        className="h-full w-full overflow-auto rounded-2xl bg-base-100 p-4 shadow-xl md:w-[768px] lg:p-8"
         ref={quizRef}
       >
         {history.map((item: JSX.Element, index: number) =>
