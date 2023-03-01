@@ -113,7 +113,7 @@ const buildQuestions = async (): Promise<
       ),
       hint: "Ich esse sie im Kino.",
       answers: [
-        "Das ist die Chips.",
+        "Das sind die Chips.",
         "Das ist die Kartoffeln.",
         "Das ist die Tüte.",
       ],
