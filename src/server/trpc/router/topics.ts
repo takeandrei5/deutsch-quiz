@@ -5,7 +5,7 @@ import { publicProcedure, router } from "../trpc";
 import type { MultipleQuizQuestion } from "@prisma/client";
 
 export const topicsRouter = router({
-  getMultipleQuizQuestions: publicProcedure
+  getManyMultipleQuizQuestions: publicProcedure
     .input(
       z.object({
         topic: z.string(),
