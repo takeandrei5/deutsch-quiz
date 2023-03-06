@@ -10,11 +10,13 @@ const Question: React.FC<QuestionProps> = ({
   return (
     <>
       {image && (
-        <figure className="relative h-24 w-24">
+        <figure className="drag-none pointer-events-none relative h-24 w-24 select-none">
           <Image
+            className="max-h-full"
             src={image}
             alt={question}
-            fill
+            width={96}
+            height={92}
             quality={75}
             placeholder="blur"
             blurDataURL={blurImage}

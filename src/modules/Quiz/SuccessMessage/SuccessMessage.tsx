@@ -13,12 +13,15 @@ const SuccessMessage: React.FC = () => {
 
     const defaultMessage: JSX.Element = (
       <>
-        <figure className="relative h-24 w-24">
+        <figure className="drag-none pointer-events-none h-16 w-24 select-none">
           <Image
+            className="max-h-full"
             src="/anya.gif"
             alt="Success"
-            fill
             quality={75}
+            width={96}
+            height={64}
+            priority
             style={{
               objectFit: "contain",
             }}
@@ -32,12 +35,15 @@ const SuccessMessage: React.FC = () => {
       1: defaultMessage,
       2: (
         <>
-          <figure className="relative h-24 w-24">
+          <figure className="drag-none pointer-events-none h-18 w-24 select-none">
             <Image
+              className="max-h-full"
               src="/excited-spin.gif"
               alt="Success"
-              fill
+              width={96}
+              height={72}
               quality={75}
+              priority
               style={{
                 objectFit: "contain",
               }}
@@ -50,12 +56,15 @@ const SuccessMessage: React.FC = () => {
       4: <span>Genau! &#128588;</span>,
       5: (
         <>
-          <figure className="relative h-24 w-24">
+          <figure className="drag-none pointer-events-none h-18 w-24 select-none">
             <Image
+              className="max-h-full"
               src="/happy.gif"
               alt="Success"
-              fill
+              width={96}
+              height={72}
               quality={75}
+              priority
               style={{
                 objectFit: "cover",
               }}

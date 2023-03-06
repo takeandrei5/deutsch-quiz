@@ -21,6 +21,8 @@ const config = {
   redirects: async () => redirects,
   images: {
     domains: ["imagedelivery.net"],
+    imageSizes: [96, 384],
+    deviceSizes: [640, 1200, 1920],
   },
   pageExtensions: ["tsx", "page.ts"],
 };

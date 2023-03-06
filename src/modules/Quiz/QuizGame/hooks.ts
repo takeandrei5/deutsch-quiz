@@ -1,27 +1,27 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 
-import { ChatEnd } from "./ChatEnd";
-import { ChatStart } from "./ChatStart";
-import { ErrorMessage } from "./ErrorMessage";
-import { Question } from "./Question";
-import { QuizResultsMessage } from "./QuizResultsMessage";
-import { SuccessMessage } from "./SuccessMessage";
-import { UserOption } from "./UserOption";
+import { ChatEnd } from "../ChatEnd";
+import { ChatStart } from "../ChatStart";
+import { ErrorMessage } from "../ErrorMessage";
+import { Question } from "../Question";
+import { QuizResultsMessage } from "../QuizResultsMessage";
+import { SuccessMessage } from "../SuccessMessage";
+import { UserOption } from "../UserOption";
 
-import type { QuestionProps } from "./Question/types";
 import type { MultipleQuizQuestion } from "@prisma/client";
+import type { NonEmptyArray } from "@utils/models";
+import type { ChatEndProps } from "../ChatEnd/types";
+import type { ChatStartProps } from "../ChatStart/types";
+import type { ErrorMessageProps } from "../ErrorMessage/types";
+import type { QuestionProps } from "../Question/types";
+import type { QuizResultsMessageProps } from "../QuizResultsMessage/types";
+import type { Option, UserOptionProps } from "../UserOption/types";
+import type { CorrectAnswer } from "../types";
 
-import type { Option } from "./UserOption/types";
-import type { NonEmptyArray } from "../../utils/models";
-import type { ChatStartProps } from "./ChatStart/types";
-import type { ChatEndProps } from "./ChatEnd/types";
-import type { UserOptionProps } from "./UserOption/types";
-import type { CorrectAnswer } from "./types";
-import type { QuizResultsMessageProps } from "./QuizResultsMessage/types";
-import type { ErrorMessageProps } from "./ErrorMessage/types";
-
-const useQuiz = (questions: NonEmptyArray<MultipleQuizQuestion>) => {
-  const quizRef = useRef<HTMLDivElement>(null);
+const useQuiz = (
+  questions: NonEmptyArray<MultipleQuizQuestion>,
+  quizRef: HTMLDivElement | null
+) => {
   const remainingQuestionsRef = useRef<MultipleQuizQuestion[]>(
     questions.slice(1)
   );
@@ -31,27 +31,33 @@ const useQuiz = (questions: NonEmptyArray<MultipleQuizQuestion>) => {
   const currentOptionsRef = useRef<Option[]>(buildOptions(questions[0]));
 
   const [history, setHistory] = useState<JSX.Element[]>([
-    React.createElement<ChatStartProps>(ChatStart, {
-      node: React.createElement<QuestionProps>(Question, {
+    React.createElement<ChatStartProps>(
+      ChatStart,
+      null,
+      React.createElement<QuestionProps>(Question, {
         image: questions[0].image || "",
         blurImage: questions[0].blurImage || "",
         question: questions[0].question || "",
-      }),
-    }),
-    React.createElement<ChatEndProps>(ChatEnd, {
-      node: React.createElement<UserOptionProps>(UserOption, {
+      })
+    ),
+    React.createElement<ChatEndProps>(
+      ChatEnd,
+      null,
+      React.createElement<UserOptionProps>(UserOption, {
         options: currentOptionsRef.current,
         onOptionClick: onUserOptionSubmitted,
-      }),
-    }),
+      })
+    ),
   ]);
+
+  if (!process.browser) React.useLayoutEffect = React.useEffect;
 
   useLayoutEffect(() => {
     setTimeout(() => scrollToBottom(), 100);
   }, [history]);
 
   const scrollToBottom = (): void => {
-    const node: HTMLDivElement | null = quizRef.current;
+    const node: HTMLDivElement | null = quizRef;
 
     if (node) {
       node.scrollTo({ behavior: "smooth", top: node.scrollHeight });
@@ -102,9 +108,11 @@ const useQuiz = (questions: NonEmptyArray<MultipleQuizQuestion>) => {
     if (!remainingQuestions || !remainingQuestions.length) {
       setHistory((prevHistory) => [
         ...prevHistory,
-        React.createElement<ChatStartProps>(ChatStart, {
-          node: "Es gibt eine Probleme mit der Spiele! Bitte versuche noch einmail",
-        }),
+        React.createElement<ChatStartProps>(
+          ChatStart,
+          null,
+          "Es gibt eine Probleme mit der Spiele! Bitte versuche noch einmail"
+        ),
       ]);
     }
 
@@ -119,22 +127,28 @@ const useQuiz = (questions: NonEmptyArray<MultipleQuizQuestion>) => {
 
       setHistory((prevHistory) => [
         ...prevHistory,
-        React.createElement<ChatStartProps>(ChatStart, {
-          node: React.createElement(SuccessMessage),
-        }),
-        React.createElement<ChatStartProps>(ChatStart, {
-          node: React.createElement<QuestionProps>(Question, {
+        React.createElement<ChatStartProps>(
+          ChatStart,
+          null,
+          React.createElement(SuccessMessage)
+        ),
+        React.createElement<ChatStartProps>(
+          ChatStart,
+          null,
+          React.createElement<QuestionProps>(Question, {
             image: newQuestion.image || "",
             blurImage: newQuestion.blurImage || "",
             question: newQuestion.question || "",
-          }),
-        }),
-        React.createElement<ChatEndProps>(ChatEnd, {
-          node: React.createElement<UserOptionProps>(UserOption, {
+          })
+        ),
+        React.createElement<ChatEndProps>(
+          ChatEnd,
+          null,
+          React.createElement<UserOptionProps>(UserOption, {
             options: currentOptionsRef.current,
             onOptionClick: onUserOptionSubmitted,
-          }),
-        }),
+          })
+        ),
       ]);
 
       return;
@@ -145,18 +159,22 @@ const useQuiz = (questions: NonEmptyArray<MultipleQuizQuestion>) => {
     currentOptionsRef.current = buildOptions(currentQuestion);
     setHistory((prevHistory) => [
       ...prevHistory,
-      React.createElement<ChatStartProps>(ChatStart, {
-        node: React.createElement<ErrorMessageProps>(ErrorMessage, {
+      React.createElement<ChatStartProps>(
+        ChatStart,
+        null,
+        React.createElement<ErrorMessageProps>(ErrorMessage, {
           hint:
             incorrectAnswersCountRef.current > 3 ? currentQuestion.hint : null,
-        }),
-      }),
-      React.createElement<ChatEndProps>(ChatEnd, {
-        node: React.createElement<UserOptionProps>(UserOption, {
+        })
+      ),
+      React.createElement<ChatEndProps>(
+        ChatEnd,
+        null,
+        React.createElement<UserOptionProps>(UserOption, {
           options: currentOptionsRef.current,
           onOptionClick: onUserOptionSubmitted,
-        }),
-      }),
+        })
+      ),
     ]);
   }
 

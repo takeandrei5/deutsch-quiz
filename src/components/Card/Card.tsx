@@ -38,14 +38,16 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className="card-compact card w-80 bg-base-100 shadow-xl md:w-96">
+    <div className="card-compact card w-96 bg-base-100 shadow-xl">
       {cardImage && (
-        <figure className="relative h-48 max-w-sm">
+        <figure className="drag-none pointer-events-none h-48 select-none">
           <Image
+            className="max-h-full"
             src={cardImage}
-            alt={cardDescription || cardTitle}
-            fill
+            alt={`${cardTitle} - ${cardDescription}`}
             quality={75}
+            width={384}
+            height={192}
             placeholder="blur"
             blurDataURL={cardBlurImage}
             priority

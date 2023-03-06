@@ -1,3 +1,3 @@
 export type ChatEndProps = {
-  node: React.ReactNode;
+  children: React.ReactNode;
 };

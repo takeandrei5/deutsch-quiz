@@ -1,18 +1,17 @@
 import React from "react";
 
-import { Breadcrumb } from "../../components";
-import { useQuiz } from "./hooks";
+import { Breadcrumb } from "@components";
+import { QuizGame } from "./QuizGame";
 
+import type { BreadcrumbItem } from "@components/Breadcrumb/types";
 import type { QuizProps } from "./types";
-import type { BreadcrumbItem } from "../../components/Breadcrumb/types";
 
 const Quiz: React.FC<QuizProps> = ({
   difficultyLevel,
   topic,
   questions,
 }: QuizProps) => {
-  const { history, quizRef } = useQuiz(questions);
-
+  const quizRef = React.useRef<HTMLDivElement>(null);
   const breadcrumbItems: BreadcrumbItem[] = [
     { label: "Niveau wählen", href: "/" },
     { label: difficultyLevel, href: `/levels/${difficultyLevel}` },
@@ -26,9 +25,7 @@ const Quiz: React.FC<QuizProps> = ({
         className="h-full w-full overflow-auto rounded-2xl bg-base-100 p-4 shadow-xl md:w-[768px] lg:p-8"
         ref={quizRef}
       >
-        {history.map((item: JSX.Element, index: number) =>
-          React.cloneElement(item, { key: index })
-        )}
+        <QuizGame questions={questions} anchorRef={quizRef} />
         <div className="mb-4"></div>
       </div>
     </div>

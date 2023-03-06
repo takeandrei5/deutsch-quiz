@@ -28,9 +28,13 @@ const UserOption: React.FC<UserOptionProps> = ({
           <input
             type="checkbox"
             name="radio-1"
-            className={cx("radio h-5 w-5 bg-base-100", {
-              "pointer-events-none": selectedOptionId !== -1,
-            })}
+            disabled={selectedOptionId !== -1}
+            className={cx(
+              "radio h-5 w-5 border-black bg-base-100 hover:opacity-80",
+              {
+                "pointer-events-none": selectedOptionId !== -1,
+              }
+            )}
             checked={option.id === selectedOptionId}
             onChange={() => onClick(option.id, onOptionClick)}
           />
