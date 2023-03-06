@@ -18,6 +18,9 @@ module.exports = {
         "fade-in-left-to-right": "fade-in-left-to-right 0.5s ease-in-out",
         "fade-in-right-to-left": "fade-in-right-to-left 0.5s ease-in-out",
       },
+      height: {
+        18: "4.5rem",
+      },
     },
   },
   content: ["./src/**/*.{js,ts,jsx,tsx}"],

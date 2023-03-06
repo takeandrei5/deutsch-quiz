@@ -1,3 +1,3 @@
 export type ChatStartProps = {
-  node: React.ReactNode;
+  children: React.ReactNode;
 };
