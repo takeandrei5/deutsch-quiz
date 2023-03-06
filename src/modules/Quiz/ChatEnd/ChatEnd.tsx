@@ -1,5 +1,3 @@
-import { memo } from "react";
-
 import type { ChatEndProps } from "./types";
 
 const ChatEnd: React.FC<ChatEndProps> = ({ children }: ChatEndProps) => {
@@ -12,4 +10,4 @@ const ChatEnd: React.FC<ChatEndProps> = ({ children }: ChatEndProps) => {
   );
 };
 
-export default memo(ChatEnd);
+export default ChatEnd;

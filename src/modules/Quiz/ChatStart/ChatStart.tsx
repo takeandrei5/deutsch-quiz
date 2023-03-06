@@ -1,5 +1,3 @@
-import { memo } from "react";
-
 import type { ChatStartProps } from "./types";
 
 const ChatStart: React.FC<ChatStartProps> = ({ children }: ChatStartProps) => {
@@ -12,4 +10,4 @@ const ChatStart: React.FC<ChatStartProps> = ({ children }: ChatStartProps) => {
   );
 };
 
-export default memo(ChatStart);
+export default ChatStart;
