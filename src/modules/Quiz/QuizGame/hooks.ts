@@ -50,6 +50,8 @@ const useQuiz = (
     ),
   ]);
 
+  if (!process.browser) React.useLayoutEffect = React.useEffect;
+
   useLayoutEffect(() => {
     setTimeout(() => scrollToBottom(), 100);
   }, [history]);
