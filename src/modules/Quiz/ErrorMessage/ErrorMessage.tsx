@@ -1,4 +1,5 @@
 import useSound from "use-sound";
+import { useState } from "react";
 
 import type { MessageState } from "../types";
 import type { ErrorMessageProps } from "./types";
@@ -6,7 +7,11 @@ import type { ErrorMessageProps } from "./types";
 const ErrorMessage: React.FC<ErrorMessageProps> = ({
   hint,
 }: ErrorMessageProps) => {
-  const [play] = useSound("/quack.mp3", { volume: 0.25 });
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [play] = useSound("/quack.mp3", {
+    volume: 0.25,
+    onload: () => setIsLoaded(true),
+  });
   play();
 
   const renderMessage = (): JSX.Element => {
@@ -33,8 +38,8 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
 
   return (
     <>
-      {renderMessage()}
-      {!!hint && (
+      {!!isLoaded && renderMessage()}
+      {!!isLoaded && !!hint && (
         <>
           <i className="block text-sm font-bold">Hinweis:</i>
           <span className="text-sm">{hint}</span>
