@@ -104,17 +104,6 @@ const useQuiz = (
       return;
     }
 
-    if (!remainingQuestions || !remainingQuestions.length) {
-      setHistory((prevHistory) => [
-        ...prevHistory,
-        React.createElement<ChatStartProps>(
-          ChatStart,
-          null,
-          "Es gibt eine Probleme mit der Spiele! Bitte versuche noch einmail"
-        ),
-      ]);
-    }
-
     if (isCorrect) {
       const newQuestion = remainingQuestions[0] as MultipleQuizQuestion;
 
