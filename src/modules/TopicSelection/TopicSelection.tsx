@@ -15,7 +15,7 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({
   const router: NextRouter = useRouter();
   const breadcrumbItems: BreadcrumbItem[] = [
     { label: "Niveau wählen", href: "/" },
-    { label: difficultyLevel, href: `/levels/${difficultyLevel}` },
+    { label: difficultyLevel, href: `/levels/${difficultyLevel}/topics` },
   ];
 
   const renderTopics = (topics: Topic[]): JSX.Element[] => {

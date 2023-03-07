@@ -13,6 +13,11 @@ const redirects = [
     destination: "/levels",
     permanent: true,
   },
+  {
+    source: "/levels/:level",
+    destination: "/levels/:level/topics",
+    permanent: true,
+  },
 ];
 
 /** @type {import("next").NextConfig} */

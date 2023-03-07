@@ -14,7 +14,7 @@ const Quiz: React.FC<QuizProps> = ({
   const quizRef = React.useRef<HTMLDivElement>(null);
   const breadcrumbItems: BreadcrumbItem[] = [
     { label: "Niveau wählen", href: "/" },
-    { label: difficultyLevel, href: `/levels/${difficultyLevel}` },
+    { label: difficultyLevel, href: `/levels/${difficultyLevel}/topics` },
     { label: topic, href: `/levels/${difficultyLevel}/topics/${topic}` },
   ];
 
