@@ -20,6 +20,7 @@ const config = {
   reactStrictMode: true,
   redirects: async () => redirects,
   images: {
+    minimumCacheTTL: 60 * 60 * 24 * 7, // 1 week
     domains: ["imagedelivery.net"],
     imageSizes: [96, 384],
     deviceSizes: [640, 1200, 1920],

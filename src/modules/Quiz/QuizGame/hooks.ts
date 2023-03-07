@@ -36,7 +36,6 @@ const useQuiz = (
       null,
       React.createElement<QuestionProps>(Question, {
         image: questions[0].image || "",
-        blurImage: questions[0].blurImage || "",
         question: questions[0].question || "",
       })
     ),
@@ -137,7 +136,6 @@ const useQuiz = (
           null,
           React.createElement<QuestionProps>(Question, {
             image: newQuestion.image || "",
-            blurImage: newQuestion.blurImage || "",
             question: newQuestion.question || "",
           })
         ),

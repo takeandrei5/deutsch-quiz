@@ -43,7 +43,6 @@ const SuccessMessage: React.FC = () => {
               width={96}
               height={72}
               quality={75}
-              priority
               style={{
                 objectFit: "contain",
               }}

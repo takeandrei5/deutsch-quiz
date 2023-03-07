@@ -26,7 +26,6 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({
           cardTitle={topic.name}
           cardDescription={topic.description || ""}
           cardImage={topic.image || ""}
-          cardBlurImage={topic.blurImage || ""}
           buttonLabel="Start"
           onButtonClick={() =>
             void router.push(`/levels/${difficultyLevel}/topics/${topic.name}`)

@@ -5,5 +5,4 @@ export type CardProps = {
   difficultyRating?: number;
   cardDescription?: string;
   cardImage?: string;
-  cardBlurImage?: string;
 };

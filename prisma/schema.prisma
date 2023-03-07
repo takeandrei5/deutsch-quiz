@@ -26,9 +26,8 @@ model Difficulty {
 model Topic {
   id                    String                 @id @default(auto()) @map("_id") @db.ObjectId
   name                  String                 @unique
-  description           String?
-  image                 String?
-  blurImage             String?
+  description           String
+  image                 String
   multipleQuizQuestions MultipleQuizQuestion[]
   difficulty            Difficulty             @relation(fields: [difficultyId], references: [id])
   difficultyId          String                 @db.ObjectId
@@ -39,7 +38,6 @@ model MultipleQuizQuestion {
   question      String?
   correctAnswer String
   image         String?
-  blurImage     String?
   hint          String?
   answers       String[]
   topic         Topic    @relation(fields: [topicId], references: [id])

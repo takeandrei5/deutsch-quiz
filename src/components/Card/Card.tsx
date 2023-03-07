@@ -11,7 +11,6 @@ const Card: React.FC<CardProps> = ({
   difficultyRating,
   cardDescription = "",
   cardImage = "",
-  cardBlurImage = "",
 }: CardProps) => {
   const renderDifficultyRatingStars = (
     difficultyRating: number
@@ -48,9 +47,7 @@ const Card: React.FC<CardProps> = ({
             quality={75}
             width={384}
             height={192}
-            placeholder="blur"
-            blurDataURL={cardBlurImage}
-            priority
+            loading="eager"
             style={{
               objectFit: "cover",
             }}
