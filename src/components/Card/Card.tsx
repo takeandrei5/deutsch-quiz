@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className="card-compact card w-96 bg-base-100 shadow-xl">
+    <div className="card-compact card w-96 max-w-full bg-base-100 shadow-xl">
       {cardImage && (
         <figure className="drag-none pointer-events-none h-48 select-none">
           <Image
