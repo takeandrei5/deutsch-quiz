@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 
-import { useRouter } from "next/router";
 import { ChatEnd } from "../ChatEnd";
 import { ChatStart } from "../ChatStart";
 import { ErrorMessage } from "../ErrorMessage";
@@ -23,7 +22,6 @@ const useQuiz = (
   questions: NonEmptyArray<MultipleQuizQuestion>,
   quizRef: HTMLDivElement | null
 ) => {
-  const { prefetch } = useRouter();
   const remainingQuestionsRef = useRef<MultipleQuizQuestion[]>(
     questions.slice(1)
   );
@@ -74,16 +72,6 @@ const useQuiz = (
     );
   }
 
-  function preloadNextImage(): void {
-    if (
-      remainingQuestionsRef.current &&
-      remainingQuestionsRef.current.length > 0 &&
-      remainingQuestionsRef.current[0]?.image
-    ) {
-      prefetch(remainingQuestionsRef.current[0].image);
-    }
-  }
-
   function onUserOptionSubmitted(optionId: number): void {
     const currentQuestion = currentQuestionRef.current;
     const currentOptions = currentOptionsRef.current;
@@ -99,8 +87,6 @@ const useQuiz = (
     if (!isQuestionAnswered) {
       correctAnswersRef.current[currentQuestion.id] = isCorrect;
     }
-
-    preloadNextImage();
 
     if (isCorrect && !remainingQuestions.length) {
       const totalQuestionsCount: number = Object.keys(questions).length;
