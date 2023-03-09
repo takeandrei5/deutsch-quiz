@@ -16,7 +16,7 @@ const Question: React.FC<QuestionProps> = ({
             alt={question}
             width={96}
             height={92}
-            quality={25}
+            quality={50}
             priority
             style={{
               objectFit: "contain",

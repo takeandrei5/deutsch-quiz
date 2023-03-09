@@ -14,6 +14,24 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <title>Wählen Sie Ihre Schwierigkeit</title>
         <meta name="description" content="deutsch niveau auswahl" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="preload"
+          as="image"
+          crossOrigin="anonymous"
+          href="/happy.gif"
+        />
+        <link
+          rel="preload"
+          as="image"
+          crossOrigin="anonymous"
+          href="/excited-spin.gif"
+        />
+        <link
+          rel="preload"
+          as="image"
+          crossOrigin="anonymous"
+          href="/anya.gif"
+        />
       </Head>
       <Component {...pageProps} />
       {process.env.NODE_ENV !== "production" && (

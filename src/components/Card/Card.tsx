@@ -47,7 +47,7 @@ const Card: React.FC<CardProps> = ({
             quality={75}
             width={384}
             height={192}
-            loading="eager"
+            priority
             style={{
               objectFit: "cover",
             }}
