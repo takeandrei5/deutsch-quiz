@@ -7,7 +7,7 @@ const QuizResultsMessage: React.FC<QuizResultsMessageProps> = ({
   correctAnswersCount,
   totalQuestionsCount,
 }: QuizResultsMessageProps) => {
-  const [play] = useSound("/cheering.wav", { volume: 0.25 });
+  const [play] = useSound("/cheering.mp3", { volume: 0.25 });
 
   useEffect(() => play(), [play]);
 

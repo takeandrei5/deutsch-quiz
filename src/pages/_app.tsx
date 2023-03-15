@@ -16,22 +16,37 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
-          as="image"
+          as="video"
           crossOrigin="anonymous"
-          href="/happy.gif"
+          href="/jake.webm"
         />
         <link
           rel="preload"
-          as="image"
+          as="video"
           crossOrigin="anonymous"
-          href="/excited-spin.gif"
+          href="/happy.webm"
         />
         <link
           rel="preload"
-          as="image"
+          as="video"
           crossOrigin="anonymous"
-          href="/anya.gif"
+          href="/spin.webm"
         />
+        <link
+          rel="preload"
+          as="video"
+          crossOrigin="anonymous"
+          href="/excited-happy.webm"
+        />
+        <link
+          rel="preload"
+          as="video"
+          crossOrigin="anonymous"
+          href="/anya.webm"
+        />
+        <link rel="" href="/ding.mp3" as="audio" />
+        <link rel="" href="/quack.mp3" as="audio" />
+        <link rel="" href="/cheering.mp3" as="audio" />
       </Head>
       <Component {...pageProps} />
       {process.env.NODE_ENV !== "production" && (

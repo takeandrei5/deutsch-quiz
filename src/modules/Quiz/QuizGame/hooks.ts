@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 
+import Image from "next/image";
 import { ChatEnd } from "../ChatEnd";
 import { ChatStart } from "../ChatStart";
 import { ErrorMessage } from "../ErrorMessage";
@@ -30,24 +31,26 @@ const useQuiz = (
   const currentQuestionRef = useRef<MultipleQuizQuestion>(questions[0]);
   const currentOptionsRef = useRef<Option[]>(buildOptions(questions[0]));
 
-  const [history, setHistory] = useState<JSX.Element[]>([
-    React.createElement<ChatStartProps>(
-      ChatStart,
-      null,
-      React.createElement<QuestionProps>(Question, {
-        image: questions[0].image || "",
-        question: questions[0].question || "",
-      })
-    ),
-    React.createElement<ChatEndProps>(
-      ChatEnd,
-      null,
-      React.createElement<UserOptionProps>(UserOption, {
-        options: currentOptionsRef.current,
-        onOptionClick: onUserOptionSubmitted,
-      })
-    ),
-  ]);
+  const [history, setHistory] = useState<JSX.Element[]>(
+    preloadNextImage([
+      React.createElement<ChatStartProps>(
+        ChatStart,
+        null,
+        React.createElement<QuestionProps>(Question, {
+          image: questions[0].image || "",
+          question: questions[0].question || "",
+        })
+      ),
+      React.createElement<ChatEndProps>(
+        ChatEnd,
+        null,
+        React.createElement<UserOptionProps>(UserOption, {
+          options: currentOptionsRef.current,
+          onOptionClick: onUserOptionSubmitted,
+        })
+      ),
+    ])
+  );
 
   if (!process.browser) React.useLayoutEffect = React.useEffect;
 
@@ -62,6 +65,27 @@ const useQuiz = (
       node.scrollTo({ behavior: "smooth", top: node.scrollHeight });
     }
   };
+
+  function preloadNextImage(history: JSX.Element[]): JSX.Element[] {
+    const remainingQuestions: MultipleQuizQuestion | undefined =
+      remainingQuestionsRef.current.at(0);
+    const newHistory: JSX.Element[] = [...history];
+
+    if (remainingQuestions && remainingQuestions.image) {
+      newHistory.push(
+        React.createElement(Image, {
+          className: "invisible absolute",
+          alt: remainingQuestions.correctAnswer,
+          src: remainingQuestions.image,
+          width: 96,
+          height: 96,
+          quality: 50,
+        })
+      );
+    }
+
+    return newHistory;
+  }
 
   function buildOptions(question: MultipleQuizQuestion): Option[] {
     return question.answers.map(
@@ -109,33 +133,34 @@ const useQuiz = (
 
       currentQuestionRef.current = newQuestion;
       currentOptionsRef.current = buildOptions(newQuestion);
-      remainingQuestionsRef.current = remainingQuestions.slice(1);
-
       incorrectAnswersCountRef.current = 0;
+      remainingQuestionsRef.current = remainingQuestions.slice(1);
 
       setHistory((prevHistory) => [
         ...prevHistory,
-        React.createElement<ChatStartProps>(
-          ChatStart,
-          null,
-          React.createElement(SuccessMessage)
-        ),
-        React.createElement<ChatStartProps>(
-          ChatStart,
-          null,
-          React.createElement<QuestionProps>(Question, {
-            image: newQuestion.image || "",
-            question: newQuestion.question || "",
-          })
-        ),
-        React.createElement<ChatEndProps>(
-          ChatEnd,
-          null,
-          React.createElement<UserOptionProps>(UserOption, {
-            options: currentOptionsRef.current,
-            onOptionClick: onUserOptionSubmitted,
-          })
-        ),
+        ...preloadNextImage([
+          React.createElement<ChatStartProps>(
+            ChatStart,
+            null,
+            React.createElement(SuccessMessage)
+          ),
+          React.createElement<ChatStartProps>(
+            ChatStart,
+            null,
+            React.createElement<QuestionProps>(Question, {
+              image: newQuestion.image || "",
+              question: newQuestion.question || "",
+            })
+          ),
+          React.createElement<ChatEndProps>(
+            ChatEnd,
+            null,
+            React.createElement<UserOptionProps>(UserOption, {
+              options: currentOptionsRef.current,
+              onOptionClick: onUserOptionSubmitted,
+            })
+          ),
+        ]),
       ]);
 
       return;
