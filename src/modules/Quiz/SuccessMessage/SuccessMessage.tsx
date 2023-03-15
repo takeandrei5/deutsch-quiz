@@ -18,6 +18,7 @@ const SuccessMessage: React.FC = () => {
       <>
         <video
           className="drag-none pointer-events-none h-16 w-24 select-none"
+          preload="metadata"
           autoPlay
           loop
           muted
@@ -36,6 +37,7 @@ const SuccessMessage: React.FC = () => {
         <>
           <video
             className="drag-none pointer-events-none h-16 w-24 select-none"
+            preload="metadata"
             autoPlay
             loop
             muted
@@ -51,6 +53,7 @@ const SuccessMessage: React.FC = () => {
         <>
           <video
             className="drag-none pointer-events-none h-16 w-24 select-none"
+            preload="metadata"
             autoPlay
             loop
             muted
@@ -66,6 +69,7 @@ const SuccessMessage: React.FC = () => {
         <>
           <video
             className="drag-none pointer-events-none h-16 w-24 select-none"
+            preload="metadata"
             autoPlay
             loop
             muted
@@ -80,6 +84,7 @@ const SuccessMessage: React.FC = () => {
         <>
           <video
             className="drag-none pointer-events-none h-16 w-24 select-none"
+            preload="metadata"
             autoPlay
             loop
             muted
