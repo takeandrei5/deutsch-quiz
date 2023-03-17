@@ -6,13 +6,17 @@ import type { ErrorMessageProps } from "./types";
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({
   hint,
+  isSoundOn,
 }: ErrorMessageProps) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [play] = useSound("/quack.mp3", {
     volume: 0.25,
     onload: () => setIsLoaded(true),
   });
-  play();
+
+  if (isSoundOn) {
+    play();
+  }
 
   const renderMessage = (): JSX.Element => {
     const random: number = Math.floor(Math.random() * 5) + 1;

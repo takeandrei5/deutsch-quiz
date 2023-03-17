@@ -2,14 +2,20 @@ import { useState } from "react";
 import useSound from "use-sound";
 
 import type { MessageState } from "../types";
+import type { SuccessMessageProps } from "./types";
 
-const SuccessMessage: React.FC = () => {
+const SuccessMessage: React.FC<SuccessMessageProps> = ({
+  isSoundOn,
+}: SuccessMessageProps) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [play] = useSound("/ding.mp3", {
     volume: 0.25,
     onload: () => setIsLoaded(true),
   });
-  play();
+
+  if (isSoundOn) {
+    play();
+  }
 
   const renderMessage = (): JSX.Element => {
     const random: number = Math.floor(Math.random() * 5) + 1;
