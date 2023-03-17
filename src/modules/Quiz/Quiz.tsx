@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 import { Breadcrumb } from "@components";
 import { QuizGame } from "./QuizGame";
+import { SoundControlIcon } from "./SoundControlIcon";
 
 import type { BreadcrumbItem } from "@components/Breadcrumb/types";
 import type { QuizProps } from "./types";
@@ -11,7 +12,9 @@ const Quiz: React.FC<QuizProps> = ({
   topic,
   questions,
 }: QuizProps) => {
-  const quizRef = React.useRef<HTMLDivElement>(null);
+  const [isSoundOn, setIsSoundOn] = useState<boolean>(true);
+  const quizRef = useRef<HTMLDivElement>(null);
+
   const breadcrumbItems: BreadcrumbItem[] = [
     { label: "Niveau wählen", href: "/" },
     { label: difficultyLevel, href: `/levels/${difficultyLevel}/topics` },
@@ -19,13 +22,23 @@ const Quiz: React.FC<QuizProps> = ({
   ];
 
   return (
-    <div className="flex h-full max-w-full flex-col items-center gap-4">
+    <div className="flex h-full max-w-full flex-col items-center">
       <Breadcrumb breadcrumbItems={breadcrumbItems} />
+      <div className="mt-4 ml-auto">
+        <SoundControlIcon
+          isSoundOn={isSoundOn}
+          toggleSound={() => setIsSoundOn((prevState) => !prevState)}
+        />
+      </div>
       <div
         className="h-full w-full overflow-auto rounded-2xl bg-base-100 p-4 shadow-xl md:w-[768px] lg:p-8"
         ref={quizRef}
       >
-        <QuizGame questions={questions} anchorRef={quizRef} />
+        <QuizGame
+          questions={questions}
+          anchorRef={quizRef}
+          isSoundOn={isSoundOn}
+        />
         <div className="mb-4"></div>
       </div>
     </div>

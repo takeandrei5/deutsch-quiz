@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useQuiz } from "./hooks";
 
 import type { QuizGameProps } from "./types";
@@ -6,8 +7,9 @@ import type { QuizGameProps } from "./types";
 const QuizGame: React.FC<QuizGameProps> = ({
   questions,
   anchorRef,
+  isSoundOn,
 }: QuizGameProps) => {
-  const { history } = useQuiz(questions, anchorRef.current);
+  const { history } = useQuiz(questions, anchorRef.current, isSoundOn);
 
   return (
     <>

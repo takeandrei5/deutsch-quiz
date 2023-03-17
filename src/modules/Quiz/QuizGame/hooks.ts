@@ -1,6 +1,5 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-import Image from "next/image";
 import { ChatEnd } from "../ChatEnd";
 import { ChatStart } from "../ChatStart";
 import { ErrorMessage } from "../ErrorMessage";
@@ -16,13 +15,20 @@ import type { ChatStartProps } from "../ChatStart/types";
 import type { ErrorMessageProps } from "../ErrorMessage/types";
 import type { QuestionProps } from "../Question/types";
 import type { QuizResultsMessageProps } from "../QuizResultsMessage/types";
+import type { SuccessMessageProps } from "../SuccessMessage/types";
 import type { Option, UserOptionProps } from "../UserOption/types";
 import type { CorrectAnswer } from "../types";
+import { useBuildOptions } from "./hooks/useBuildOptions";
+import { usePreloadImage } from "./hooks/usePreloadImage";
 
 const useQuiz = (
   questions: NonEmptyArray<MultipleQuizQuestion>,
-  quizRef: HTMLDivElement | null
+  quizRef: HTMLDivElement | null,
+  isSoundOn: boolean
 ) => {
+  const { buildOptions } = useBuildOptions();
+  const { preloadImage } = usePreloadImage();
+
   const remainingQuestionsRef = useRef<MultipleQuizQuestion[]>(
     questions.slice(1)
   );
@@ -30,71 +36,41 @@ const useQuiz = (
   const correctAnswersRef = useRef<CorrectAnswer>({});
   const currentQuestionRef = useRef<MultipleQuizQuestion>(questions[0]);
   const currentOptionsRef = useRef<Option[]>(buildOptions(questions[0]));
+  const isSoundOnRef = useRef<boolean>(isSoundOn);
 
   const [history, setHistory] = useState<JSX.Element[]>(
-    preloadNextImage([
-      React.createElement<ChatStartProps>(
-        ChatStart,
-        null,
-        React.createElement<QuestionProps>(Question, {
-          image: questions[0].image || "",
-          question: questions[0].question || "",
-        })
-      ),
-      React.createElement<ChatEndProps>(
-        ChatEnd,
-        null,
-        React.createElement<UserOptionProps>(UserOption, {
-          options: currentOptionsRef.current,
-          onOptionClick: onUserOptionSubmitted,
-        })
-      ),
-    ])
+    preloadImage(
+      [
+        React.createElement<ChatStartProps>(
+          ChatStart,
+          null,
+          React.createElement<QuestionProps>(Question, {
+            image: questions[0].image || "",
+            question: questions[0].question || "",
+          })
+        ),
+        React.createElement<ChatEndProps>(
+          ChatEnd,
+          null,
+          React.createElement<UserOptionProps>(UserOption, {
+            options: currentOptionsRef.current,
+            onOptionClick: onUserOptionSubmitted,
+          })
+        ),
+      ],
+      remainingQuestionsRef.current
+    )
   );
+
+  useEffect(() => {
+    isSoundOnRef.current = isSoundOn;
+  }, [isSoundOn]);
 
   if (!process.browser) React.useLayoutEffect = React.useEffect;
 
   useLayoutEffect(() => {
     setTimeout(() => scrollToBottom(), 100);
   }, [history]);
-
-  const scrollToBottom = (): void => {
-    const node: HTMLDivElement | null = quizRef;
-
-    if (node) {
-      node.scrollTo({ behavior: "smooth", top: node.scrollHeight });
-    }
-  };
-
-  function preloadNextImage(history: JSX.Element[]): JSX.Element[] {
-    const remainingQuestions: MultipleQuizQuestion | undefined =
-      remainingQuestionsRef.current.at(0);
-    const newHistory: JSX.Element[] = [...history];
-
-    if (remainingQuestions && remainingQuestions.image) {
-      newHistory.push(
-        React.createElement(Image, {
-          className: "invisible absolute",
-          alt: remainingQuestions.correctAnswer,
-          src: remainingQuestions.image,
-          width: 96,
-          height: 96,
-          quality: 50,
-        })
-      );
-    }
-
-    return newHistory;
-  }
-
-  function buildOptions(question: MultipleQuizQuestion): Option[] {
-    return question.answers.map(
-      (answer: string, index: number): Option => ({
-        id: index,
-        value: answer,
-      })
-    );
-  }
 
   function onUserOptionSubmitted(optionId: number): void {
     const currentQuestion = currentQuestionRef.current;
@@ -138,29 +114,34 @@ const useQuiz = (
 
       setHistory((prevHistory) => [
         ...prevHistory,
-        ...preloadNextImage([
-          React.createElement<ChatStartProps>(
-            ChatStart,
-            null,
-            React.createElement(SuccessMessage)
-          ),
-          React.createElement<ChatStartProps>(
-            ChatStart,
-            null,
-            React.createElement<QuestionProps>(Question, {
-              image: newQuestion.image || "",
-              question: newQuestion.question || "",
-            })
-          ),
-          React.createElement<ChatEndProps>(
-            ChatEnd,
-            null,
-            React.createElement<UserOptionProps>(UserOption, {
-              options: currentOptionsRef.current,
-              onOptionClick: onUserOptionSubmitted,
-            })
-          ),
-        ]),
+        ...preloadImage(
+          [
+            React.createElement<ChatStartProps>(
+              ChatStart,
+              null,
+              React.createElement<SuccessMessageProps>(SuccessMessage, {
+                isSoundOn: isSoundOnRef.current,
+              })
+            ),
+            React.createElement<ChatStartProps>(
+              ChatStart,
+              null,
+              React.createElement<QuestionProps>(Question, {
+                image: newQuestion.image || "",
+                question: newQuestion.question || "",
+              })
+            ),
+            React.createElement<ChatEndProps>(
+              ChatEnd,
+              null,
+              React.createElement<UserOptionProps>(UserOption, {
+                options: currentOptionsRef.current,
+                onOptionClick: onUserOptionSubmitted,
+              })
+            ),
+          ],
+          remainingQuestionsRef.current
+        ),
       ]);
 
       return;
@@ -177,6 +158,7 @@ const useQuiz = (
         React.createElement<ErrorMessageProps>(ErrorMessage, {
           hint:
             incorrectAnswersCountRef.current > 3 ? currentQuestion.hint : null,
+          isSoundOn: isSoundOnRef.current,
         })
       ),
       React.createElement<ChatEndProps>(
@@ -190,9 +172,16 @@ const useQuiz = (
     ]);
   }
 
+  function scrollToBottom(): void {
+    const node: HTMLDivElement | null = quizRef;
+
+    if (node) {
+      node.scrollTo({ behavior: "smooth", top: node.scrollHeight });
+    }
+  }
+
   return {
     history,
-    quizRef,
   };
 };
 
