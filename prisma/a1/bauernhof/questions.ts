@@ -52,7 +52,7 @@ const buildQuestions = async (): Promise<
       image:
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Tiere_Hund/public",
       hint: "Ich bin der beste Freund des Menschen. Woof Woof",
-      answers: ["Das ist der Hund.", "Das ist ein Katze.", "Das ist ein Wolf."],
+      answers: ["Das ist der Hund.", "Das ist die Katze.", "Das ist der Wolf."],
     },
     {
       correctAnswer: "Das ist das Kaninchen.",
@@ -61,8 +61,8 @@ const buildQuestions = async (): Promise<
       hint: "Ich komme jedes Ostern.",
       answers: [
         "Das ist das Kaninchen.",
-        "Das ist ein Eichhörnchen.",
-        "Das ist ein Waschbär.",
+        "Das ist das Eichhörnchen.",
+        "Das ist der Waschbär.",
       ],
     },
     {
@@ -72,8 +72,8 @@ const buildQuestions = async (): Promise<
       hint: "Meoooow Meoooow.",
       answers: [
         "Das ist die Katze.",
-        "Das ist ein Tiger.",
-        "Das ist ein Löwe.",
+        "Das ist der Tiger.",
+        "Das ist die Löwe.",
       ],
     },
     {
@@ -81,18 +81,14 @@ const buildQuestions = async (): Promise<
       image:
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Tiere_Kuh/public",
       hint: "Ich gebe den Menschen Milch.",
-      answers: [
-        "Das ist die Kuh.",
-        "Das ist der Ochse.",
-        "Das ist ein Schafe.",
-      ],
+      answers: ["Das ist die Kuh.", "Das ist der Ochse.", "Das ist das Schaf."],
     },
     {
-      correctAnswer: "Das ist ein Küken.",
+      correctAnswer: "Das ist das Küken.",
       image:
         "https://imagedelivery.net/G1lMtwsUs9dEAB6xuB8WcA/A1_Tiere_Küken/public",
       hint: "Ich komme aus einem Ei und Ich bin gelb.",
-      answers: ["Das ist ein Küken.", "Das ist die Gans.", "Das ist das Huhn."],
+      answers: ["Das ist das Küken.", "Das ist die Gans.", "Das ist das Huhn."],
     },
     {
       correctAnswer: "Das ist die Maus.",
@@ -124,7 +120,7 @@ const buildQuestions = async (): Promise<
       answers: [
         "Das ist das Pferd.",
         "Das ist der Esel.",
-        "Das ist ein Einhorn.",
+        "Das ist das Einhorn.",
       ],
     },
     {
