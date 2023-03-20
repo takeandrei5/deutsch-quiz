@@ -18,8 +18,8 @@ const usePreloadImage = () => {
           alt: currentQuestion.correctAnswer,
           src: currentQuestion.image,
           width: 96,
-          height: 96,
-          quality: 50,
+          height: 0,
+          quality: 10,
         })
       );
     }

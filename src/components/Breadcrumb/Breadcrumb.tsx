@@ -36,7 +36,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
   };
 
   return (
-    <div className="breadcrumbs overflow-hidden text-xl text-neutral">
+    <div className="breadcrumbs overflow-hidden text-xl font-medium text-neutral">
       <ul>{renderBreadcrumbItems(breadcrumbItems)}</ul>
     </div>
   );

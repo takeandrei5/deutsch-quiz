@@ -34,7 +34,7 @@ const LevelSelection: React.FC<LevelSelectionProps> = ({
   return (
     <div className="flex flex-col items-center gap-4">
       <Breadcrumb breadcrumbItems={breadcrumbItems} />
-      <h1 className="text-4xl font-bold text-neutral">Los geht&apos;s</h1>
+      <h1 className="text-4xl font-semibold text-neutral">Los geht&apos;s</h1>
       <div
         className={cx("grid grid-flow-col grid-cols-1 justify-center", {
           "md:grid-cols-2": false,

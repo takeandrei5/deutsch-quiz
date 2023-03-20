@@ -44,7 +44,7 @@ const Card: React.FC<CardProps> = ({
             className="max-h-full"
             src={cardImage}
             alt={`${cardTitle} - ${cardDescription}`}
-            quality={75}
+            quality={100}
             width={384}
             height={192}
             priority
@@ -59,7 +59,7 @@ const Card: React.FC<CardProps> = ({
           {cardTitle}
           {difficultyRating && renderDifficultyRatingStars(difficultyRating)}
         </h2>
-        {cardDescription && <p>{cardDescription}</p>}
+        {cardDescription && <p className="font-normal">{cardDescription}</p>}
         <div className="card-actions justify-end text-neutral">
           <Button onClick={onButtonClick}>{buttonLabel}</Button>
         </div>

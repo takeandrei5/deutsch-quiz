@@ -22,7 +22,7 @@ const Quiz: React.FC<QuizProps> = ({
   ];
 
   return (
-    <div className="flex h-full max-w-full flex-col items-center">
+    <div className="flex h-full max-w-full flex-col items-center overflow-hidden">
       <Breadcrumb breadcrumbItems={breadcrumbItems} />
       <div className="mt-4 ml-auto">
         <SoundControlIcon
@@ -31,7 +31,7 @@ const Quiz: React.FC<QuizProps> = ({
         />
       </div>
       <div
-        className="h-full w-full overflow-auto rounded-2xl bg-base-100 p-4 shadow-xl md:w-[768px] lg:p-8"
+        className="h-full w-full overflow-auto overflow-x-hidden rounded-2xl bg-base-100 p-4 shadow-xl md:w-[768px] lg:p-8"
         ref={quizRef}
       >
         <QuizGame
