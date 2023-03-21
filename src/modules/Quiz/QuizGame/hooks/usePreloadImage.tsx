@@ -1,5 +1,5 @@
+import { PreloadedImage } from "@components";
 import React from "react";
-import Image from "next/image";
 
 import type { MultipleQuizQuestion } from "@prisma/client";
 
@@ -13,12 +13,12 @@ const usePreloadImage = () => {
 
     if (currentQuestion && currentQuestion.image) {
       newHistory.push(
-        React.createElement(Image, {
+        React.createElement(PreloadedImage, {
           className: "invisible absolute top-0 left-0",
           alt: currentQuestion.correctAnswer,
           src: currentQuestion.image,
           width: 96,
-          height: 0,
+          height: 96,
           quality: 75,
         })
       );
