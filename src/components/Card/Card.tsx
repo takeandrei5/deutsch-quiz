@@ -37,14 +37,14 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className="card card-compact w-96 max-w-full bg-base-100 shadow-xl">
+    <div className="card-compact card w-96 max-w-full bg-base-100 shadow-xl">
       {cardImage && (
         <figure className="drag-none pointer-events-none h-48 select-none">
           <Image
             className="max-h-full"
             src={cardImage}
             alt={`${cardTitle} - ${cardDescription}`}
-            quality={17500}
+            quality={75}
             width={384}
             height={192}
             priority
