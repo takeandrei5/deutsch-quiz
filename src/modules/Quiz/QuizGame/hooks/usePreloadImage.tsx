@@ -19,7 +19,7 @@ const usePreloadImage = () => {
           src: currentQuestion.image,
           width: 96,
           height: 0,
-          quality: 10,
+          quality: 75,
         })
       );
     }
