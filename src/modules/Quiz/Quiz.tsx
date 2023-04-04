@@ -13,7 +13,6 @@ const Quiz: React.FC<QuizProps> = ({
   questions,
 }: QuizProps) => {
   const [isSoundOn, setIsSoundOn] = useState<boolean>(true);
-  const quizRef = useRef<HTMLDivElement>(null);
 
   const breadcrumbItems: BreadcrumbItem[] = [
     { label: "Niveau wählen", href: "/" },
@@ -30,17 +29,7 @@ const Quiz: React.FC<QuizProps> = ({
           toggleSound={() => setIsSoundOn((prevState) => !prevState)}
         />
       </div>
-      <div
-        className="h-full w-full overflow-auto overflow-x-hidden rounded-2xl bg-base-100 p-4 shadow-xl md:w-[768px] lg:p-8"
-        ref={quizRef}
-      >
-        <QuizGame
-          questions={questions}
-          anchorRef={quizRef}
-          isSoundOn={isSoundOn}
-        />
-        <div className="mb-4"></div>
-      </div>
+      <QuizGame questions={questions} isSoundOn={isSoundOn} />
     </div>
   );
 };

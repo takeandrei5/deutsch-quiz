@@ -14,7 +14,7 @@ const usePreloadImage = () => {
     if (currentQuestion && currentQuestion.image) {
       newHistory.push(
         React.createElement(PreloadedImage, {
-          className: "invisible absolute top-0 left-0",
+          key: `${currentQuestion.image}-preload-${currentQuestion.id}`,
           alt: currentQuestion.correctAnswer,
           src: currentQuestion.image,
           width: 96,

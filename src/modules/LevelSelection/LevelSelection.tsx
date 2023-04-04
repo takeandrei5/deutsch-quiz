@@ -1,10 +1,9 @@
-import { Breadcrumb, Card } from "@components";
+import { Breadcrumb } from "@components";
 import cx from "classnames";
-import { useRouter } from "next/router";
+import React from "react";
+import { useLevelSelection } from "./hooks";
 
 import type { BreadcrumbItem } from "@components/Breadcrumb/types";
-import type { Difficulty } from "@prisma/client";
-import type { NextRouter } from "next/router";
 import type { LevelSelectionProps } from "./types";
 
 const LevelSelection: React.FC<LevelSelectionProps> = ({
@@ -14,22 +13,7 @@ const LevelSelection: React.FC<LevelSelectionProps> = ({
     { label: "Niveau wählen", href: "/levels" },
   ];
 
-  const router: NextRouter = useRouter();
-
-  const renderDifficultyCards = (difficulties: Difficulty[]) => {
-    return difficulties.map((difficulty: Difficulty) => (
-      <Card
-        key={difficulty.level}
-        cardTitle={difficulty.level}
-        difficultyRating={difficulty.rating}
-        cardDescription={difficulty.description}
-        buttonLabel="Start"
-        onButtonClick={() =>
-          void router.push(`/levels/${difficulty.level}/topics`)
-        }
-      />
-    ));
-  };
+  const { preloadedImages, renderDifficultyCards } = useLevelSelection();
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -42,6 +26,7 @@ const LevelSelection: React.FC<LevelSelectionProps> = ({
       >
         {renderDifficultyCards(difficulties)}
       </div>
+      {preloadedImages.map((image: JSX.Element) => image)}
     </div>
   );
 };

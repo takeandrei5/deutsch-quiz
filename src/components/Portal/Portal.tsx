@@ -8,7 +8,7 @@ const Portal: React.FC<PortalProps> = (props: PortalProps) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    ref.current = document.querySelector<HTMLElement>("#portal");
+    ref.current = document.querySelector<HTMLElement>("#portal-preload-images");
     setMounted(true);
   }, []);
 

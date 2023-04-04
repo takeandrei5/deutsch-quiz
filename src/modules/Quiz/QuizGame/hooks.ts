@@ -7,6 +7,8 @@ import { Question } from "../Question";
 import { QuizResultsMessage } from "../QuizResultsMessage";
 import { SuccessMessage } from "../SuccessMessage";
 import { UserOption } from "../UserOption";
+import { useBuildOptions } from "./hooks/useBuildOptions";
+import { usePreloadImage } from "./hooks/usePreloadImage";
 
 import type { MultipleQuizQuestion } from "@prisma/client";
 import type { NonEmptyArray } from "@utils/models";
@@ -18,8 +20,6 @@ import type { QuizResultsMessageProps } from "../QuizResultsMessage/types";
 import type { SuccessMessageProps } from "../SuccessMessage/types";
 import type { Option, UserOptionProps } from "../UserOption/types";
 import type { CorrectAnswer } from "../types";
-import { useBuildOptions } from "./hooks/useBuildOptions";
-import { usePreloadImage } from "./hooks/usePreloadImage";
 
 const useQuiz = (
   questions: NonEmptyArray<MultipleQuizQuestion>,

@@ -5,4 +5,5 @@ export type CardProps = {
   difficultyRating?: number;
   cardDescription?: string;
   cardImage?: string;
+  onCardButtonHover?: () => void;
 };

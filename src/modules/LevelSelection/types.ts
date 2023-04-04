@@ -1,5 +1,7 @@
-import type { Difficulty } from "@prisma/client";
+import type { Difficulty, Topic } from "@prisma/client";
 
 export type LevelSelectionProps = {
-  difficulties: Difficulty[];
+  difficulties: (Difficulty & {
+    topics: Topic[];
+  })[];
 };

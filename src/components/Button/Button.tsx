@@ -7,6 +7,9 @@ const Button = ({
   onClick,
   style = "primary",
   type = "button",
+  onHover = () => {
+    return;
+  },
 }: ButtonProps) => {
   return (
     <button
@@ -15,6 +18,7 @@ const Button = ({
         "btn-error": style === "error",
       })}
       onClick={onClick}
+      onMouseEnter={onHover}
       type={type}
     >
       {children}

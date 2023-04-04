@@ -17,7 +17,7 @@ const Document = () => {
       </Head>
       <body>
         <Main />
-        <div id="portal-preload-images" />
+        <div id="portal-preload-images" className="-z-50 h-0 w-0 bg-none" />
         <NextScript />
       </body>
     </Html>

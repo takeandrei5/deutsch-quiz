@@ -11,6 +11,9 @@ const Card: React.FC<CardProps> = ({
   difficultyRating,
   cardDescription = "",
   cardImage = "",
+  onCardButtonHover = () => {
+    return;
+  },
 }: CardProps) => {
   const renderDifficultyRatingStars = (
     difficultyRating: number
@@ -61,7 +64,9 @@ const Card: React.FC<CardProps> = ({
         </h2>
         {cardDescription && <p className="font-normal">{cardDescription}</p>}
         <div className="card-actions justify-end text-neutral">
-          <Button onClick={onButtonClick}>{buttonLabel}</Button>
+          <Button onClick={onButtonClick} onHover={onCardButtonHover}>
+            {buttonLabel}
+          </Button>
         </div>
       </div>
     </div>
