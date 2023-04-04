@@ -4,20 +4,28 @@ import { publicProcedure, router } from '../trpc';
 import type { Difficulty, MultipleQuizQuestion, Topic } from '@prisma/client';
 
 export const difficultiesRouter = router({
-  getManyDifficulties: publicProcedure.query(async ({ ctx }): Promise<Difficulty[]> => {
-    const difficulties: (Difficulty & {
-      topics: Topic[];
-    })[] = await ctx.prisma.difficulty.findMany({
-      where: {
-        enabled: true,
-      },
-      include: {
-        topics: true,
-      },
-    });
+  getManyDifficulties: publicProcedure.query(
+    async ({
+      ctx,
+    }): Promise<
+      (Difficulty & {
+        topics: Topic[];
+      })[]
+    > => {
+      const difficulties: (Difficulty & {
+        topics: Topic[];
+      })[] = await ctx.prisma.difficulty.findMany({
+        where: {
+          enabled: true,
+        },
+        include: {
+          topics: true,
+        },
+      });
 
-    return difficulties;
-  }),
+      return difficulties;
+    }
+  ),
   getManyTopics: publicProcedure
     .input(
       z.object({
