@@ -1,10 +1,9 @@
+import { Stopwatch } from '@components';
 import React, { useRef, useState } from 'react';
-
-import { useQuiz } from './hooks';
+import { SoundControlIcon } from '../SoundControlIcon';
+import { useQuiz } from './hooks/useQuiz';
 
 import type { QuizGameProps } from './types';
-import { Stopwatch } from '@components';
-import { SoundControlIcon } from '../SoundControlIcon';
 
 const QuizGame: React.FC<QuizGameProps> = ({ questions }: QuizGameProps) => {
   const quizRef = useRef<HTMLDivElement>(null);
