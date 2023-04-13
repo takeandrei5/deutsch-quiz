@@ -1,8 +1,8 @@
-import { shuffleArray } from "@utils/array-utils";
-import { z } from "zod";
-import { publicProcedure, router } from "../trpc";
+import { shuffleArray } from '@utils/array-utils';
+import { z } from 'zod';
+import { publicProcedure, router } from '../trpc';
 
-import type { MultipleQuizQuestion } from "@prisma/client";
+import type { MultipleQuizQuestion } from '@prisma/client';
 
 export const topicsRouter = router({
   getManyMultipleQuizQuestions: publicProcedure

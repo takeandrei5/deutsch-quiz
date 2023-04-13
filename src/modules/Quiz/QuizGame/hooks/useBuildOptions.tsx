@@ -1,5 +1,5 @@
-import type { MultipleQuizQuestion } from "@prisma/client";
-import type { Option } from "../../UserOption/types";
+import type { MultipleQuizQuestion } from '@prisma/client';
+import type { Option } from '../../UserOption/types';
 
 const useBuildOptions = () => {
   const buildOptions = (question: MultipleQuizQuestion): Option[] => {

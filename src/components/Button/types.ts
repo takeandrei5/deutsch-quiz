@@ -1,7 +1,8 @@
 export type ButtonProps = {
-  children: string;
+  children: string | React.ReactNode;
   onClick: () => void;
-  style?: "primary" | "error";
-  type?: "button" | "submit" | "reset";
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  style?: 'primary' | 'error';
+  type?: 'button' | 'submit' | 'reset';
   onHover?: () => void;
 };
