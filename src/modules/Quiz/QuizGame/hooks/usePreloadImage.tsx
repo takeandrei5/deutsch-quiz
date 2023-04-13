@@ -1,13 +1,10 @@
-import { PreloadedImage } from "@components";
-import React from "react";
+import { PreloadedImage } from '@components';
+import React from 'react';
 
-import type { MultipleQuizQuestion } from "@prisma/client";
+import type { MultipleQuizQuestion } from '@prisma/client';
 
 const usePreloadImage = () => {
-  const preloadImage = (
-    history: JSX.Element[],
-    remainingQuestions: MultipleQuizQuestion[]
-  ): JSX.Element[] => {
+  const preloadImage = (history: JSX.Element[], remainingQuestions: MultipleQuizQuestion[]): JSX.Element[] => {
     const currentQuestion: MultipleQuizQuestion = remainingQuestions[0];
     const newHistory: JSX.Element[] = [...history];
 
@@ -19,7 +16,7 @@ const usePreloadImage = () => {
           src: currentQuestion.image,
           width: 96,
           height: 96,
-          quality: 75,
+          quality: 50,
         })
       );
     }

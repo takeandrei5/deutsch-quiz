@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { ChatEnd } from "@modules/Quiz/ChatEnd";
-import { ChatStart } from "@modules/Quiz/ChatStart";
-import { ErrorMessage } from "@modules/Quiz/ErrorMessage";
-import { Question } from "@modules/Quiz/Question";
-import { QuizResultsMessage } from "@modules/Quiz/QuizResultsMessage";
-import { UserOption } from "@modules/Quiz/UserOption";
-import { SuccessMessage } from "@modules/Quiz/SuccessMessage";
+import { ChatEnd } from '@modules/Quiz/ChatEnd';
+import { ChatStart } from '@modules/Quiz/ChatStart';
+import { ErrorMessage } from '@modules/Quiz/ErrorMessage';
+import { Question } from '@modules/Quiz/Question';
+import { QuizResultsMessage } from '@modules/Quiz/QuizResultsMessage';
+import { SuccessMessage } from '@modules/Quiz/SuccessMessage';
+import { UserOption } from '@modules/Quiz/UserOption';
+import { shuffleArray } from '@utils/array-utils';
+import { usePreloadImage } from './usePreloadImage';
 
-import { usePreloadImage } from "./usePreloadImage";
-
-import type { ChatEndProps } from "@modules/Quiz/ChatEnd/types";
-import type { ChatStartProps } from "@modules/Quiz/ChatStart/types";
-import type { ErrorMessageProps } from "@modules/Quiz/ErrorMessage/types";
-import type { QuestionProps } from "@modules/Quiz/Question/types";
-import type { QuizResultsMessageProps } from "@modules/Quiz/QuizResultsMessage/types";
-import type { Option, UserOptionProps } from "@modules/Quiz/UserOption/types";
-import type { MultipleQuizQuestion } from "@prisma/client";
-import type { NonEmptyArray } from "@utils/models";
-import type { SuccessMessageProps } from "@modules/Quiz/SuccessMessage/types";
+import type { ChatEndProps } from '@modules/Quiz/ChatEnd/types';
+import type { ChatStartProps } from '@modules/Quiz/ChatStart/types';
+import type { ErrorMessageProps } from '@modules/Quiz/ErrorMessage/types';
+import type { QuestionProps } from '@modules/Quiz/Question/types';
+import type { QuizResultsMessageProps } from '@modules/Quiz/QuizResultsMessage/types';
+import type { SuccessMessageProps } from '@modules/Quiz/SuccessMessage/types';
+import type { Option, UserOptionProps } from '@modules/Quiz/UserOption/types';
+import type { MultipleQuizQuestion } from '@prisma/client';
+import type { NonEmptyArray } from '@utils/models';
 
 const useBuildHistory = (
   onUserOptionSubmitted: (optionId: number) => void,
@@ -35,8 +35,8 @@ const useBuildHistory = (
           ChatStart,
           null,
           React.createElement<QuestionProps>(Question, {
-            image: questions[0].image || "",
-            question: questions[0].question || "",
+            image: questions[0].image || '',
+            question: questions[0].question || '',
           })
         ),
         React.createElement<ChatEndProps>(
@@ -58,8 +58,8 @@ const useBuildHistory = (
     newRemainingQuestions: MultipleQuizQuestion[],
     isSoundOn: boolean
   ): void => {
-    setHistory([
-      ...history,
+    setHistory((prevHistory: JSX.Element[]) => [
+      ...prevHistory,
       ...preloadImage(
         [
           React.createElement<ChatStartProps>(
@@ -73,15 +73,15 @@ const useBuildHistory = (
             ChatStart,
             null,
             React.createElement<QuestionProps>(Question, {
-              image: newQuestion.image || "",
-              question: newQuestion.question || "",
+              image: newQuestion.image || '',
+              question: newQuestion.question || '',
             })
           ),
           React.createElement<ChatEndProps>(
             ChatEnd,
             null,
             React.createElement<UserOptionProps>(UserOption, {
-              options: newOptions,
+              options: shuffleArray(newOptions),
               onOptionClick: onUserOptionSubmitted,
             })
           ),
@@ -91,12 +91,9 @@ const useBuildHistory = (
     ]);
   };
 
-  const appendIncorrectAnswerNode = (
-    hint: string | null,
-    isSoundOn: boolean
-  ): void => {
-    setHistory([
-      ...history,
+  const appendIncorrectAnswerNode = (options: Option[], hint: string | null, isSoundOn: boolean): void => {
+    setHistory((prevHistory: JSX.Element[]) => [
+      ...prevHistory,
       React.createElement<ChatStartProps>(
         ChatStart,
         null,
@@ -109,28 +106,27 @@ const useBuildHistory = (
         ChatEnd,
         null,
         React.createElement<UserOptionProps>(UserOption, {
-          options: currentOptions,
+          options: shuffleArray(options),
           onOptionClick: onUserOptionSubmitted,
         })
       ),
     ]);
   };
 
-  const appendQuizResultNode = (
-    correctAnswersCount: number,
-    totalQuestionsCount: number
-  ): void => {
-    setHistory([
-      ...history,
+  const appendQuizResultNode = (correctAnswersCount: number, totalQuestionsCount: number, time: string): void => {
+    setHistory((prevHistory: JSX.Element[]) => [
+      ...prevHistory,
       React.createElement<QuizResultsMessageProps>(QuizResultsMessage, {
         correctAnswersCount,
         totalQuestionsCount,
+        timeSpent: time,
       }),
     ]);
   };
 
   return {
     history,
+    setHistory,
     appendCorrectAnswerNode,
     appendIncorrectAnswerNode,
     appendQuizResultNode,

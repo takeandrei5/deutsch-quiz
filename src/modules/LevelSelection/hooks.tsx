@@ -1,9 +1,9 @@
-import { Card } from "@components";
-import { usePreloadImage } from "@components/PreloadedImage";
-import { useRouter } from "next/router";
+import { Card } from '@components';
+import { usePreloadImage } from '@components/PreloadedImage';
+import { useRouter } from 'next/router';
 
-import type { Difficulty, Topic } from "@prisma/client";
-import type { NextRouter } from "next/router";
+import type { Difficulty, Topic } from '@prisma/client';
+import type { NextRouter } from 'next/router';
 
 const useLevelSelection = () => {
   const router: NextRouter = useRouter();
@@ -21,7 +21,7 @@ const useLevelSelection = () => {
         src: topic.image,
         width: 384,
         height: 192,
-        quality: 75,
+        quality: 50,
       })
     );
   };
@@ -42,10 +42,8 @@ const useLevelSelection = () => {
           cardTitle={difficulty.level}
           difficultyRating={difficulty.rating}
           cardDescription={difficulty.description}
-          buttonLabel="Start"
-          onButtonClick={() =>
-            void router.push(`/levels/${difficulty.level}/topics`)
-          }
+          buttonLabel='Start'
+          onButtonClick={() => void router.push(`/levels/${difficulty.level}/topics`)}
           onCardButtonHover={() => preloadImages(difficulty)}
         />
       )
