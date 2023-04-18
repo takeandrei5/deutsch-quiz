@@ -28,7 +28,7 @@ const useTopicSelection = (difficultyLevel: string) => {
       src: firstMultipleQuizQuestion.image,
       width: 96,
       height: 92,
-      quality: 50,
+      quality: 75,
     });
   };
 
