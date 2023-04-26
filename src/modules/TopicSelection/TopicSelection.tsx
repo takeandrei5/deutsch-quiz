@@ -13,20 +13,18 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({ difficultyLevel, topics
   const { preloadedImages, renderTopics } = useTopicSelection(difficultyLevel);
 
   return (
-    <>
-      <div className='flex flex-col items-center gap-4'>
-        <Breadcrumb breadcrumbItems={breadcrumbItems} />
-        <h1 className='text-4xl font-bold text-neutral'>Wähle ein Thema</h1>
-        <div
-          className={cx('grid grid-cols-1 gap-4', {
-            'md:grid-cols-2': !!topics && topics.length > 1,
-          })}
-        >
-          {renderTopics(topics)}
-        </div>
-        {preloadedImages.map((image: JSX.Element) => image)}
+    <div className='flex flex-col items-center gap-4'>
+      <Breadcrumb breadcrumbItems={breadcrumbItems} />
+      <h1 className='text-4xl font-bold text-neutral'>Wähle ein Thema</h1>
+      <div
+        className={cx('grid grid-cols-1 gap-4', {
+          'md:grid-cols-2': !!topics && topics.length > 1,
+        })}
+      >
+        {renderTopics(topics)}
       </div>
-    </>
+      {preloadedImages.map((image: JSX.Element) => image)}
+    </div>
   );
 };
 

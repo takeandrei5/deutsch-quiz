@@ -1,8 +1,9 @@
-import { PrismaClient } from "@prisma/client";
-import { build_a1_bauernhof_topic } from "./a1/bauernhof";
+import { PrismaClient } from '@prisma/client';
+import { build_a1_bauernhof_topic } from './a1/bauernhof';
+import { build_a1_der_die_das_topic } from './a1/der-die-das';
+import { build_a1_lebensmittel_topic } from './a1/lebensmittel';
 
-import type { Difficulty } from "@prisma/client";
-import { build_a1_lebensmittel_topic } from "./a1/lebensmittel";
+import type { Difficulty } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -17,14 +18,15 @@ async function insertDifficulties(): Promise<void> {
 
   const a1: Difficulty = await prisma.difficulty.create({
     data: {
-      level: "A1",
+      level: 'A1',
       description:
-        "Mit A1 lernen Sie die Grundbausteine ​​der deutschen Sprache, sowohl was Grammatik als auch Wortschatz betrifft.",
+        'Mit A1 lernen Sie die Grundbausteine ​​der deutschen Sprache, sowohl was Grammatik als auch Wortschatz betrifft.',
       rating: 1,
       topics: {
         create: [
           await build_a1_bauernhof_topic(),
           await build_a1_lebensmittel_topic(),
+          await build_a1_der_die_das_topic(),
         ],
       },
       enabled: true,
@@ -32,45 +34,45 @@ async function insertDifficulties(): Promise<void> {
   });
 
   const a2: Difficulty = await prisma.difficulty.upsert({
-    where: { level: "A2" },
+    where: { level: 'A2' },
     update: {
       enabled: false,
     },
     create: {
-      level: "A2",
-      description: "A2 difficulty",
+      level: 'A2',
+      description: 'A2 difficulty',
       enabled: false,
       topics: {},
     },
   });
 
   const b1: Difficulty = await prisma.difficulty.upsert({
-    where: { level: "B1" },
+    where: { level: 'B1' },
     update: {
       enabled: false,
     },
     create: {
-      level: "B1",
-      description: "B1 difficulty",
+      level: 'B1',
+      description: 'B1 difficulty',
       enabled: false,
       topics: {},
     },
   });
 
   const b2: Difficulty = await prisma.difficulty.upsert({
-    where: { level: "B2" },
+    where: { level: 'B2' },
     update: {
       enabled: false,
     },
     create: {
-      level: "B2",
-      description: "B2 difficulty",
+      level: 'B2',
+      description: 'B2 difficulty',
       enabled: false,
       topics: {},
     },
   });
 
-  console.log("Inserted difficulty levels and topics: ", { a1, a2, b1, b2 });
+  console.log('Inserted difficulty levels and topics: ', { a1, a2, b1, b2 });
 }
 
 main()

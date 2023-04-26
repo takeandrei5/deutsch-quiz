@@ -8,6 +8,8 @@ for file in $files
 do
   id=`echo $file | sed -e 's/.*\///' -e 's/\..*//'`
 
+  echo "Uploading file $id..."
+
   curl \
     --request POST https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_CDN_ACCOUNT_ID/images/v1 \
     --show-error \

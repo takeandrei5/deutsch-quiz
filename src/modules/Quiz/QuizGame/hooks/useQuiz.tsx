@@ -3,13 +3,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useBuildHistory } from './useBuildHistory';
 import { useBuildOptions } from './useBuildOptions';
 
-import type { MultipleQuizQuestion } from '@prisma/client';
+import type { MultipleQuizQuestion, Topic } from '@prisma/client';
 import type { NonEmptyArray } from '@utils/models';
 import type { Dispatch, SetStateAction } from 'react';
 import type { Option } from '../../UserOption/types';
 import type { CorrectAnswer } from '../../types';
 
 const useQuiz = (
+  topic: Topic,
   questions: NonEmptyArray<MultipleQuizQuestion>,
   quizRef: HTMLDivElement | null,
   isSoundOn: boolean,
@@ -27,6 +28,7 @@ const useQuiz = (
   const [isQuizFinished, setIsQuizFinished] = useState<boolean>(false);
 
   const { history, appendCorrectAnswerNode, appendIncorrectAnswerNode, appendQuizResultNode } = useBuildHistory(
+    topic,
     onUserOptionSubmitted,
     questions,
     currentOptionsRef.current,
