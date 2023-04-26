@@ -14,11 +14,11 @@ const useTopicSelection = (difficultyLevel: string) => {
       multipleQuizQuestions: MultipleQuizQuestion[];
     }
   ): void => {
-    const firstMultipleQuizQuestion: MultipleQuizQuestion = hoveredTopic.multipleQuizQuestions.filter(
-      (multipleQuizQuestion: MultipleQuizQuestion) => !!multipleQuizQuestion.image
-    )[0];
+    const firstMultipleQuizQuestion = hoveredTopic.multipleQuizQuestions
+      .filter((multipleQuizQuestion: MultipleQuizQuestion) => !!multipleQuizQuestion.image)
+      .at(0);
 
-    if (!firstMultipleQuizQuestion.image) {
+    if (!firstMultipleQuizQuestion || !firstMultipleQuizQuestion.image) {
       return;
     }
 

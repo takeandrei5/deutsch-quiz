@@ -1,12 +1,12 @@
-import type { Option } from "./UserOption/types";
+import type { Option } from './UserOption/types';
 
-import type { NonEmptyArray } from "../../utils/models";
+import type { NonEmptyArray } from '../../utils/models';
 
-import type { MultipleQuizQuestion } from "@prisma/client";
+import type { MultipleQuizQuestion, Topic } from '@prisma/client';
 
 export type QuizProps = {
   difficultyLevel: string;
-  topic: string;
+  topic: Topic;
   questions: NonEmptyArray<MultipleQuizQuestion>;
 };
 

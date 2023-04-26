@@ -10,13 +10,13 @@ const Quiz: React.FC<QuizProps> = ({ difficultyLevel, topic, questions }: QuizPr
   const breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Niveau wählen', href: '/' },
     { label: difficultyLevel, href: `/levels/${difficultyLevel}/topics` },
-    { label: topic, href: `/levels/${difficultyLevel}/topics/${topic}` },
+    { label: topic.name, href: `/levels/${difficultyLevel}/topics/${topic}` },
   ];
 
   return (
     <div className='flex max-w-full flex-col items-center'>
       <Breadcrumb breadcrumbItems={breadcrumbItems} />
-      <QuizGame questions={questions} />
+      <QuizGame questions={questions} topic={topic} />
     </div>
   );
 };

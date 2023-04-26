@@ -5,12 +5,13 @@ import { useQuiz } from './hooks/useQuiz';
 
 import type { QuizGameProps } from './types';
 
-const QuizGame: React.FC<QuizGameProps> = ({ questions }: QuizGameProps) => {
+const QuizGame: React.FC<QuizGameProps> = ({ questions, topic }: QuizGameProps) => {
   const quizRef = useRef<HTMLDivElement>(null);
   const [isSoundOn, setIsSoundOn] = useState<boolean>(true);
   const [isStopwatchPaused, setIsStopwatchPaused] = useState<boolean>(true);
 
   const { history, isQuizFinished, onQuizFinished } = useQuiz(
+    topic,
     questions,
     quizRef.current,
     isSoundOn,

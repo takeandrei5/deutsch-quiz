@@ -1,32 +1,26 @@
-import { createProxySSGHelpers } from "@trpc/react-query/ssg";
-import { useRouter } from "next/router";
-import superjson from "superjson";
+import { createProxySSGHelpers } from '@trpc/react-query/ssg';
+import { useRouter } from 'next/router';
+import superjson from 'superjson';
 
-import { Spinner } from "@components";
-import { Quiz } from "@modules";
-import { createContext } from "@server/trpc/context";
-import { appRouter } from "@server/trpc/router/_app";
-import { trpc } from "@utils/trpc";
+import { Spinner } from '@components';
+import { Quiz } from '@modules';
+import { createContext } from '@server/trpc/context';
+import { appRouter } from '@server/trpc/router/_app';
+import { trpc } from '@utils/trpc';
 
-import type { MultipleQuizQuestion } from "@prisma/client";
-import type { NonEmptyArray } from "@utils/models";
-import type {
-  GetStaticPathsResult,
-  GetStaticPropsContext,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
-import type { NextRouter } from "next/router";
-import type { TopicPageProps } from "./types";
+import type { MultipleQuizQuestion } from '@prisma/client';
+import type { NonEmptyArray } from '@utils/models';
+import type { GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
+import type { NextRouter } from 'next/router';
+import type { TopicPageProps } from './types';
 
 const QuizPage: NextPage = () => {
   const router: NextRouter = useRouter();
 
   const difficultyLevel = router.query.difficultyLevel as string;
-  const topic = router.query.topic as string;
+  const topicName = router.query.topic as string;
 
-  const { data, isLoading, error } =
-    trpc.topics.getManyMultipleQuizQuestions.useQuery({ topic });
+  const { data, isLoading, error } = trpc.topics.getTopic.useQuery({ topic: topicName });
 
   if (isLoading) {
     return <Spinner />;
@@ -39,8 +33,8 @@ const QuizPage: NextPage = () => {
   return (
     <Quiz
       difficultyLevel={difficultyLevel}
-      topic={topic}
-      questions={data as NonEmptyArray<MultipleQuizQuestion>}
+      topic={data.topic}
+      questions={data.multipleQuizQuestions as NonEmptyArray<MultipleQuizQuestion>}
     />
   );
 };
@@ -55,7 +49,7 @@ export const getStaticProps = async (
   });
   const topic = context.params?.topic as string;
 
-  await ssg.topics.getManyMultipleQuizQuestions.prefetch({
+  await ssg.topics.getTopic.prefetch({
     topic,
   });
 
@@ -72,14 +66,20 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
     paths: [
       {
         params: {
-          difficultyLevel: "A1",
-          topic: "Auf dem Bauernhof",
+          difficultyLevel: 'A1',
+          topic: 'Auf dem Bauernhof',
         },
       },
       {
         params: {
-          difficultyLevel: "A1",
-          topic: "In dem Supermarkt",
+          difficultyLevel: 'A1',
+          topic: 'In dem Supermarkt',
+        },
+      },
+      {
+        params: {
+          difficultyLevel: 'A1',
+          topic: 'Der, die oder das',
         },
       },
     ],
